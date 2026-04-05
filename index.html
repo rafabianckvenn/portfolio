@@ -297,6 +297,12 @@
       inset: -16px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(203, 166, 247, 0.08) 0%, transparent 60%);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); }
     }
 
     @keyframes starSpin {
@@ -932,26 +938,28 @@
       .hero-name { font-size: 36px; letter-spacing: 3px; }
       .loader-name { font-size: 36px; letter-spacing: 3px; }
       .loader-cursor { height: 28px; width: 2px; }
-      .hero-subtitle { font-size: 17px; }
+      /* Loader must match hero exactly */
+      .loader-name { font-size: 36px; letter-spacing: 3px; }
+      .loader-cursor { height: 28px; width: 2px; }
+      .star-icon { width: 40px; height: 40px; flex-shrink: 1; }
+      /* Typography */
+      .hero-subtitle { font-size: 18px; }
       .section-title { font-size: 28px; }
-      .section-label { font-size: 13px; }
-      .role-card h3, .project-card h3 { font-size: 18px; }
+      .section-label { font-size: 14px; }
+      .role-card h3, .project-card h3 { font-size: 19px; }
       .role-card p, .project-card p, .project-info p { font-size: 16px; line-height: 1.8; }
-      .role-card .role-context { font-size: 14px; }
-      .event-card h4 { font-size: 17px; }
-      .event-card p { font-size: 15px; line-height: 1.7; }
-      .event-card .event-year { font-size: 14px; }
+      .role-card .role-context { font-size: 15px; }
+      .event-card h4 { font-size: 18px; }
+      .event-card p { font-size: 16px; line-height: 1.8; }
+      .event-card .event-year { font-size: 15px; }
       .project-info h3 { font-size: 24px; }
-      .project-meta { font-size: 14px; }
-      .tag { font-size: 13px; }
-      .contact-prompt { font-size: 16px; }
+      .project-meta { font-size: 15px; }
+      .tag { font-size: 14px; }
+      .contact-prompt { padding: 16px 24px; font-size: 16px; }
+      /* Layout */
       .events-list { grid-template-columns: 1fr; }
       footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
       .back-to-top-wrap { text-align: center !important; }
-      .contact-prompt { padding: 16px 24px; font-size: 14px; }
-      .star-icon { width: 40px; height: 40px; flex-shrink: 1; }
-      .loader-name { font-size: 28px; letter-spacing: 2px; }
-      .loader-cursor { height: 22px; width: 2px; }
     }
     </style>
   <noscript><style>.loader{display:none!important}body.loading nav,body.loading .hero,body.loading .roles,body.loading .projects,body.loading .events,body.loading .contact,body.loading footer{opacity:1!important}</style></noscript>
