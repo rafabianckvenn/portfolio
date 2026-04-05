@@ -867,14 +867,9 @@
       .secondary-projects-grid { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 640px) {
-      nav { padding: 16px 24px; }
-
+    @media (max-width: 768px) {
       .nav-toggle { display: block; }
-
-      .nav-links {
-        display: none;
-      }
+      .nav-links { display: none; }
 
       .nav-overlay {
         display: none;
@@ -908,6 +903,10 @@
         color: var(--accent-mauve);
         text-decoration: none;
       }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
       section { padding: 0 24px; }
       .hero-name { font-size: 36px; letter-spacing: 3px; }
       .loader-name { font-size: 36px; letter-spacing: 3px; }
@@ -1318,11 +1317,17 @@
       }
 
       // Match spacer height to hero-intro so vertical centering is identical
-      const heroIntro = document.querySelector('.hero-intro');
-      const spacer = document.querySelector('.loader-spacer');
-      if (heroIntro && spacer) {
-        spacer.style.height = heroIntro.offsetHeight + 'px';
+      function syncSpacer() {
+        const heroIntro = document.querySelector('.hero-intro');
+        const spacer = document.querySelector('.loader-spacer');
+        if (heroIntro && spacer) {
+          spacer.style.height = heroIntro.offsetHeight + 'px';
+        }
       }
+      syncSpacer();
+      window.addEventListener('resize', syncSpacer);
+      // Recalculate after fonts load
+      document.fonts.ready.then(syncSpacer);
 
       // Start after brief pause
       setTimeout(() => typeForward(0), 500);
