@@ -12,6 +12,12 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Rafa Bianck — Portfolio">
   <meta name="twitter:description" content="UI/UX & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
+  <script>
+    // Force scroll to top before anything renders
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1172,13 +1178,18 @@
   </div>
 
   <script>
-    // ── Scroll to top on load ──
-    window.scrollTo(0, 0);
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    // ── Scroll to top ──
+    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
 
     // ── Loading Screen ──
     window.addEventListener('load', () => {
+      // Force scroll to top aggressively
       window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      // Retry after a tick for mobile Safari
+      setTimeout(() => { window.scrollTo(0, 0); }, 0);
+      setTimeout(() => { window.scrollTo(0, 0); }, 50);
 
       const textEl = document.getElementById('loader-text');
       const cursorEl = document.getElementById('loader-cursor');
@@ -1191,31 +1202,46 @@
       const deleteSpeed = 90;
       const moveSpeed = 50;
 
-      // Position loader text exactly where hero-name is
+      // Get absolute position from document top (not viewport)
+      function getDocOffset(el) {
+        let top = 0, left = 0;
+        while (el) {
+          top += el.offsetTop;
+          left += el.offsetLeft;
+          el = el.offsetParent;
+        }
+        return { top, left };
+      }
+
       function positionLoader() {
         const heroName = document.querySelector('.hero-name');
         const heroDivider = document.querySelector('.hero .divider');
         if (heroName) {
-          const rect = heroName.getBoundingClientRect();
-          loaderContent.style.left = rect.left + 'px';
-          loaderContent.style.top = rect.top + 'px';
+          const pos = getDocOffset(heroName);
+          loaderContent.style.left = pos.left + 'px';
+          loaderContent.style.top = pos.top + 'px';
         }
         if (heroDivider) {
-          const dRect = heroDivider.getBoundingClientRect();
-          line.style.left = dRect.left + 'px';
-          line.style.width = dRect.width + 'px';
-          line.style.top = dRect.top + 'px';
+          const pos = getDocOffset(heroDivider);
+          line.style.left = pos.left + 'px';
+          line.style.width = heroDivider.offsetWidth + 'px';
+          line.style.top = pos.top + 'px';
         }
       }
 
-      // Wait for fonts then position
+      // Wait for fonts + scroll to settle, then position
       document.fonts.ready.then(() => {
-        positionLoader();
-        // Start typing after positioned
-        setTimeout(() => typeForward(0), 500);
+        window.scrollTo(0, 0);
+        requestAnimationFrame(() => {
+          positionLoader();
+          setTimeout(() => typeForward(0), 500);
+        });
       });
 
-      window.addEventListener('resize', positionLoader);
+      window.addEventListener('resize', () => {
+        window.scrollTo(0, 0);
+        positionLoader();
+      });
 
       // Two spans: before cursor + after cursor
       const afterEl = document.createElement('span');
