@@ -5,7 +5,7 @@ Personal portfolio — UI/UX & game designer, vibe coder at [Venn Studios](https
 ## Stack
 
 - HTML / CSS / vanilla JS
-- Design system: Aurora
+- Design system: Aurora (original, designed by Rafa Bianck)
 - Hosted on GitHub Pages
 
 ## Features
