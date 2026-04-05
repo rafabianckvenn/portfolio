@@ -25,6 +25,8 @@
     }, 10);
     // Stop after loader finishes (set by main script)
     window._stopScrollForce = function() { clearInterval(_scrollInterval); };
+    // Safety: stop after 8s max regardless
+    setTimeout(function() { clearInterval(_scrollInterval); }, 8000);
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
