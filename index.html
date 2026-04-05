@@ -159,7 +159,54 @@
     }
 
     .nav-overlay {
-      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: rgba(19, 19, 20, 0.95);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .nav-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .nav-overlay a {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      transition: color 0.2s, transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .nav-overlay.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-overlay.open a:nth-child(1) { transition-delay: 0.05s; }
+    .nav-overlay.open a:nth-child(2) { transition-delay: 0.1s; }
+    .nav-overlay.open a:nth-child(3) { transition-delay: 0.15s; }
+    .nav-overlay.open a:nth-child(4) { transition-delay: 0.2s; }
+
+    .nav-overlay a:hover {
+      color: var(--accent-mauve);
+      text-decoration: none;
     }
 
     /* ── Sections ── */
@@ -626,28 +673,20 @@
       inset: 0;
       z-index: 1000;
       background: var(--bg-primary);
-      /* Mirror hero section layout: centered container with same max-width */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader-inner {
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 48px;
-      padding-top: 80px;
-      /* Match the section centering: max-width + auto margin + same padding */
       width: 100%;
       max-width: 1080px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 40px;
-      padding-right: 40px;
-    }
-
-    /* Full-width bg behind the centered loader */
-    .loader::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: var(--bg-primary);
-      z-index: -1;
+      padding: 80px 40px 0;
+      min-height: 100vh;
     }
 
     .loader-star {
@@ -859,7 +898,7 @@
       .hero-name { font-size: 48px; }
       .loader-name { font-size: 48px; }
       .loader-cursor { height: 36px; width: 3px; }
-      .loader { padding-left: 32px; padding-right: 32px; }
+      .loader-inner { padding-left: 32px; padding-right: 32px; }
       .roles-grid { grid-template-columns: 1fr; }
       .project { grid-template-columns: 1fr; gap: 32px; }
       .project:nth-child(even) .project-visual { order: 0; }
@@ -871,57 +910,7 @@
     @media (max-width: 768px) {
       .nav-toggle { display: block; }
       .nav-links { display: none; }
-
       nav { z-index: 200; }
-
-      .nav-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 199;
-        background: rgba(19, 19, 20, 0.95);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 40px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-
-      .nav-overlay.open {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .nav-overlay a {
-        font-family: var(--font-display);
-        font-size: 32px;
-        font-weight: 300;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        color: var(--text-primary);
-        transition: color 0.2s, transform 0.3s, opacity 0.3s;
-        opacity: 0;
-        transform: translateY(16px);
-      }
-
-      .nav-overlay.open a {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .nav-overlay.open a:nth-child(1) { transition-delay: 0.05s; }
-      .nav-overlay.open a:nth-child(2) { transition-delay: 0.1s; }
-      .nav-overlay.open a:nth-child(3) { transition-delay: 0.15s; }
-      .nav-overlay.open a:nth-child(4) { transition-delay: 0.2s; }
-
-      .nav-overlay a:hover {
-        color: var(--accent-mauve);
-        text-decoration: none;
-      }
     }
 
     @media (max-width: 640px) {
@@ -930,10 +919,13 @@
       .hero-name { font-size: 36px; letter-spacing: 3px; }
       .loader-name { font-size: 36px; letter-spacing: 3px; }
       .loader-cursor { height: 28px; width: 2px; }
-      .loader { padding-left: 24px; padding-right: 24px; }
+      .loader-inner { padding-left: 24px; padding-right: 24px; }
       .loader-star { width: 40px; height: 40px; }
       .hero-subtitle { font-size: 16px; }
       .section-title { font-size: 28px; }
+      .role-card p, .project-card p, .project-info p { font-size: 15px; }
+      .event-card p { font-size: 14px; }
+      .role-card .role-context { font-size: 14px; }
       .events-list { grid-template-columns: 1fr; }
       footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
       .back-to-top-wrap { text-align: center; }
@@ -944,16 +936,18 @@
 
   <!-- Loading Screen — mirrors .hero layout exactly -->
   <div class="loader" id="loader">
-    <div>
-      <div class="loader-hero-top">
-        <div class="loader-name-wrap">
-          <span class="loader-name" id="loader-text"></span><span class="loader-cursor" id="loader-cursor"></span>
+    <div class="loader-inner">
+      <div>
+        <div class="loader-hero-top">
+          <div class="loader-name-wrap">
+            <span class="loader-name" id="loader-text"></span><span class="loader-cursor" id="loader-cursor"></span>
+          </div>
+          <img class="star-icon loader-star" src="assets/star-icon.svg" alt="" id="loader-star">
         </div>
-        <img class="star-icon loader-star" src="assets/star-icon.svg" alt="" id="loader-star">
+        <div class="loader-line" id="loader-line"></div>
       </div>
-      <div class="loader-line" id="loader-line"></div>
+      <div class="loader-spacer"></div>
     </div>
-    <div class="loader-spacer"></div>
   </div>
 
   <!-- Background Effects -->
