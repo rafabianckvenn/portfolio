@@ -13,10 +13,18 @@
   <meta name="twitter:title" content="Rafa Bianck — Portfolio">
   <meta name="twitter:description" content="UI/UX & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
   <script>
-    // Force scroll to top before anything renders
+    // Force scroll to top — multiple strategies for cross-browser
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
+    // Keep trying until page is interactive
+    var _scrollInterval = setInterval(function() {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body && (document.body.scrollTop = 0);
+    }, 10);
+    // Stop after loader finishes (set by main script)
+    window._stopScrollForce = function() { clearInterval(_scrollInterval); };
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1337,6 +1345,7 @@
       }
 
       function revealPage() {
+        window._stopScrollForce();
         document.body.classList.remove('loading');
         setTimeout(() => loader.classList.add('gone'), 600);
       }
