@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafa Bianck — Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="assets/star-icon.svg">
+  <meta name="description" content="Rafa Bianck — UI/UX & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
+  <meta property="og:title" content="Rafa Bianck — Portfolio">
+  <meta property="og:description" content="UI/UX & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Rafa Bianck — Portfolio">
+  <meta name="twitter:description" content="UI/UX & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── Aurora Tokens ── */
+    :root {
+      --bg-primary: #131314;
+      --bg-secondary: #1e1f22;
+      --bg-gradient-end: #1c1821;
+      --accent-mauve: #cba6f7;
+      --accent-blue: #6986d8;
+      --text-primary: #f3f3f3;
+      --text-secondary: rgba(243, 243, 243, 0.6);
+      --text-muted: rgba(243, 243, 243, 0.4);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-y: scroll; /* always show scrollbar to prevent layout shift */
+    }
+
+    body {
+      font-family: var(--font-display);
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-gradient-end) 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent-mauve); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .external-arrow {
+      font-size: 0.55em;
+      vertical-align: super;
+      line-height: 0;
+      margin-left: 0.1em;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    h3 .external-arrow {
+      font-size: 0.45em;
+    }
+
+    a:has(.external-arrow) {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    a:has(.external-arrow):hover {
+      text-decoration: none;
+      border-bottom-color: var(--accent-mauve);
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(19, 19, 20, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(243, 243, 243, 0.06);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-mauve);
+      text-decoration: none;
+    }
+
+    /* ── Sections ── */
+    section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-mauve));
+    }
+
+    .divider--fade {
+      background: linear-gradient(90deg, transparent, var(--accent-mauve), transparent);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 48px;
+      padding-top: 80px;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .hero-name {
+      font-size: 64px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .hero-name span {
+      color: var(--accent-mauve);
+    }
+
+    .star-icon {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      animation: starSpin 60s linear infinite;
+      filter: drop-shadow(0 0 16px rgba(203, 166, 247, 0.4));
+    }
+
+    @keyframes starSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 720px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .hero-subtitle strong {
+      color: var(--accent-mauve);
+      font-weight: 400;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+      padding: 8px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--text-muted);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-primary);
+      white-space: nowrap;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .tag:hover {
+      border-color: var(--accent-mauve);
+      background: rgba(203, 166, 247, 0.08);
+    }
+
+    .tag .slash {
+      color: var(--accent-mauve);
+    }
+
+    /* ── Roles Section ── */
+    .roles {
+      padding-top: 120px;
+      padding-bottom: 120px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent-mauve);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .role-card {
+      padding: 32px;
+      background: var(--bg-secondary);
+      border: 1px solid rgba(243, 243, 243, 0.08);
+      border-radius: var(--radius-md);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .role-card:hover {
+      border-color: var(--accent-mauve);
+      transform: translateY(-2px);
+    }
+
+    .role-card h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .role-card .role-context {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
+
+    .role-card p {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Projects ── */
+    .projects {
+      padding-top: 120px;
+      padding-bottom: 120px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 96px;
+    }
+
+    .project:last-child { margin-bottom: 0; }
+
+    .project-visual {
+      aspect-ratio: 16 / 10;
+      background: var(--bg-secondary);
+      border: 1px solid rgba(243, 243, 243, 0.08);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+
+    .project-info h3 {
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .project-meta {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-mauve);
+      margin-bottom: 16px;
+    }
+
+    .project-info p {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .project-contributions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-contributions .tag {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-color: rgba(243, 243, 243, 0.12);
+    }
+
+    .project:nth-child(even) .project-visual { order: 2; }
+    .project:nth-child(even) .project-info { order: 1; }
+
+    /* ── Secondary Projects Grid ── */
+    .secondary-projects {
+      margin-top: 64px;
+    }
+
+    .secondary-projects-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .secondary-projects-label {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent-mauve);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .secondary-projects-rule {
+      flex: 1;
+      border: none;
+      border-top: 1px solid rgba(243, 243, 243, 0.08);
+    }
+
+    .secondary-projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(243, 243, 243, 0.08);
+      padding: 32px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-mauve);
+      transform: translateY(-2px);
+    }
+
+    .project-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .project-card .project-meta {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-mauve);
+      margin-bottom: 16px;
+    }
+
+    .project-card p {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .project-card .project-contributions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-card .project-contributions .tag {
+      font-size: 12px;
+      padding: 4px 8px;
+      background: rgba(203, 166, 247, 0.08);
+      border-color: rgba(203, 166, 247, 0.12);
+    }
+
+
+    /* ── Events ── */
+    .events {
+      padding-top: 120px;
+      padding-bottom: 120px;
+    }
+
+    .events-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .event-card {
+      padding: 24px;
+      background: var(--bg-secondary);
+      border: 1px solid rgba(243, 243, 243, 0.08);
+      border-radius: var(--radius-md);
+      transition: border-color 0.3s;
+    }
+
+    .event-card:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .event-card h4 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .event-card .event-year {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-mauve);
+      margin-bottom: 8px;
+    }
+
+    .event-card p {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      text-align: center;
+    }
+
+    .contact-prompt {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 40px;
+      background: var(--bg-secondary);
+      border: 2px solid var(--accent-mauve);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 18px;
+      margin-top: 32px;
+      transition: background 0.2s;
+    }
+
+    .contact-prompt:hover {
+      background: rgba(203, 166, 247, 0.08);
+      text-decoration: none;
+    }
+
+    .contact-prompt .caret {
+      color: var(--accent-mauve);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .back-to-top {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .back-to-top:hover {
+      color: var(--accent-mauve);
+      text-decoration: none;
+    }
+
+    .footer-cats {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-cats img {
+      object-fit: cover;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .footer-cats img:hover {
+      opacity: 1;
+      animation: catBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes catBounce {
+      0% { transform: translateY(0) rotate(0deg); }
+      40% { transform: translateY(-6px) rotate(-3deg); }
+      60% { transform: translateY(-2px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    .cat-pantu { width: 40px; height: 40px; }
+    .cat-sus { width: 32px; height: 32px; }
+    .cat-presun { width: 32px; height: 40px; }
+
+    /* ── Loading Screen ── */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: var(--bg-primary);
+      /* Mirror hero layout exactly */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 48px;
+      padding-top: 80px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    /* Full-width bg behind the centered loader */
+    .loader::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--bg-primary);
+      z-index: -1;
+    }
+
+    .loader-star {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader-star.visible {
+      opacity: 1;
+    }
+
+    .loader-hero-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .loader-name-wrap {
+      display: flex;
+      align-items: baseline;
+      white-space: nowrap;
+    }
+
+    .loader-name {
+      font-family: var(--font-display);
+      font-size: 64px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--text-primary);
+    }
+
+    .loader-cursor {
+      display: inline-block;
+      width: 4px;
+      height: 48px;
+      background: var(--accent-mauve);
+      margin-left: 4px;
+      vertical-align: baseline;
+      animation: cursorBlink 0.6s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .loader-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-mauve));
+      margin-top: 16px;
+      transform: scaleX(0);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .loader-line.expand {
+      transform: scaleX(1);
+    }
+
+    /* Reserve same space as hero-intro below the name to match vertical centering */
+    .loader-spacer {
+      max-width: 720px;
+      height: 128px; /* approximate height of hero-intro, overridden by JS */
+      visibility: hidden;
+    }
+
+    .loader {
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loader.gone {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* ── Page Reveal ── */
+    body.loading { overflow: hidden; }
+
+    body.loading nav,
+    body.loading .hero,
+    body.loading .roles,
+    body.loading .projects,
+    body.loading .events,
+    body.loading .contact,
+    body.loading footer { opacity: 0; }
+
+    nav {
+      transition: opacity 0.8s ease 0.1s;
+    }
+
+    /* ── Aurora Background Ribbons ── */
+    .aurora-ribbons {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .aurora-ribbon {
+      position: absolute;
+      width: 200%;
+      height: 300px;
+      opacity: 0;
+      filter: blur(80px);
+      border-radius: 50%;
+    }
+
+    .aurora-ribbon--1 {
+      top: 10%;
+      left: -50%;
+      background: linear-gradient(90deg, transparent, rgba(105, 134, 216, 0.06), rgba(203, 166, 247, 0.04), transparent);
+      animation: ribbonDrift 14s ease-in-out infinite;
+    }
+
+    .aurora-ribbon--2 {
+      top: 50%;
+      left: -50%;
+      background: linear-gradient(90deg, transparent, rgba(203, 166, 247, 0.05), rgba(105, 134, 216, 0.03), transparent);
+      animation: ribbonDrift 18s ease-in-out infinite -5s;
+    }
+
+    .aurora-ribbon--3 {
+      top: 80%;
+      left: -50%;
+      background: linear-gradient(90deg, transparent, rgba(105, 134, 216, 0.04), rgba(203, 166, 247, 0.06), transparent);
+      animation: ribbonDrift 16s ease-in-out infinite -9s;
+    }
+
+    @keyframes ribbonDrift {
+      0% { opacity: 0; transform: translateX(-20%) scaleY(0.7); }
+      35% { opacity: 1; }
+      65% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(20%) scaleY(1.3); }
+    }
+
+    /* ── Particles Canvas ── */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Content z-index ── */
+    nav { z-index: 100; }
+    section, footer { position: relative; z-index: 1; }
+
+    /* ── Gradient Text ── */
+    .hero-name {
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-mauve) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-name span {
+      -webkit-text-fill-color: var(--accent-mauve);
+    }
+
+    /* ── Scroll Animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger by row (2-col grid) */
+    .roles-grid .fade-in:nth-child(1) { transition-delay: 0s; }
+    .roles-grid .fade-in:nth-child(2) { transition-delay: 0s; }
+    .roles-grid .fade-in:nth-child(3) { transition-delay: 0.06s; }
+    .roles-grid .fade-in:nth-child(4) { transition-delay: 0.06s; }
+    .roles-grid .fade-in:nth-child(5) { transition-delay: 0.12s; }
+    .roles-grid .fade-in:nth-child(6) { transition-delay: 0.12s; }
+    .roles-grid .fade-in:nth-child(7) { transition-delay: 0.18s; }
+
+    /* Stagger by row (2-col secondary grid) */
+    .secondary-projects-grid .fade-in:nth-child(1) { transition-delay: 0s; }
+    .secondary-projects-grid .fade-in:nth-child(2) { transition-delay: 0s; }
+    .secondary-projects-grid .fade-in:nth-child(3) { transition-delay: 0.06s; }
+    .secondary-projects-grid .fade-in:nth-child(4) { transition-delay: 0.06s; }
+
+    /* Stagger by row (3-col grid) */
+    .events-list .fade-in:nth-child(1) { transition-delay: 0s; }
+    .events-list .fade-in:nth-child(2) { transition-delay: 0s; }
+    .events-list .fade-in:nth-child(3) { transition-delay: 0s; }
+    .events-list .fade-in:nth-child(4) { transition-delay: 0.06s; }
+    .events-list .fade-in:nth-child(5) { transition-delay: 0.06s; }
+    .events-list .fade-in:nth-child(6) { transition-delay: 0.06s; }
+
+    /* ── Role card glow on hover ── */
+    .role-card:hover {
+      box-shadow: 0 0 24px rgba(203, 166, 247, 0.08), 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      nav { padding: 16px 32px; }
+      .hero-name { font-size: 48px; }
+      .roles-grid { grid-template-columns: 1fr; }
+      .project { grid-template-columns: 1fr; gap: 32px; }
+      .project:nth-child(even) .project-visual { order: 0; }
+      .project:nth-child(even) .project-info { order: 0; }
+      .events-list { grid-template-columns: repeat(2, 1fr); }
+      .secondary-projects-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 12px; }
+      section { padding: 0 24px; }
+      .hero-name { font-size: 36px; letter-spacing: 3px; }
+      .hero-subtitle { font-size: 16px; }
+      .section-title { font-size: 28px; }
+      .events-list { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body class="loading">
+
+  <!-- Loading Screen — mirrors .hero layout exactly -->
+  <div class="loader" id="loader">
+    <div>
+      <div class="loader-hero-top">
+        <div class="loader-name-wrap">
+          <span class="loader-name" id="loader-text"></span><span class="loader-cursor" id="loader-cursor"></span>
+        </div>
+        <img class="star-icon loader-star" src="assets/star-icon.svg" alt="" id="loader-star">
+      </div>
+      <div class="loader-line" id="loader-line"></div>
+    </div>
+    <div class="loader-spacer"></div>
+  </div>
+
+  <!-- Background Effects -->
+  <div class="aurora-ribbons">
+    <div class="aurora-ribbon aurora-ribbon--1"></div>
+    <div class="aurora-ribbon aurora-ribbon--2"></div>
+    <div class="aurora-ribbon aurora-ribbon--3"></div>
+  </div>
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Nav -->
+  <nav>
+    <span class="nav-logo">Rafa Bianck</span>
+    <ul class="nav-links">
+      <li><a href="#roles">Roles</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div>
+      <div class="hero-top">
+        <h1 class="hero-name">Rafa <span>Bianck</span></h1>
+        <img class="star-icon" src="assets/star-icon.svg" alt="">
+      </div>
+      <div class="divider" style="margin-top: 16px;"></div>
+    </div>
+    <div class="hero-intro">
+      <p class="hero-subtitle">
+        Sharp eyes. No apologies.<br>
+        UI/UX &amp; game designer, vibe coder at <a href="https://venn-studios.com/" target="_blank" rel="noopener"><strong>Venn Studios</strong><span class="external-arrow">&#8599;</span></a>.
+      </p>
+      <div class="hero-tags">
+        <span class="tag"><span class="slash">/</span> ui-ux</span>
+        <span class="tag"><span class="slash">/</span> game-design-analysis</span>
+        <span class="tag"><span class="slash">/</span> player-research</span>
+        <span class="tag"><span class="slash">/</span> concept-art</span>
+        <span class="tag"><span class="slash">/</span> vibe-coding</span>
+        <span class="tag"><span class="slash">/</span> research-strategy</span>
+        <span class="tag"><span class="slash">/</span> comms-docs</span>
+        <span class="tag"><span class="slash">/</span> tooling</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles -->
+  <section class="roles" id="roles">
+    <p class="section-label">// what I do</p>
+    <h2 class="section-title">Roles</h2>
+    <div class="roles-grid">
+      <div class="role-card fade-in">
+        <h3>UI/UX Designer</h3>
+        <p class="role-context">Game HUD &middot; Menus &middot; Web &middot; Standards</p>
+        <p>Responsible for the entire digital experience across the studio — Venn Studios' website, Rogue Reigns' and Paradoxical's web presence. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Authored card descriptions, mechanics, names, and functionality. Wrote the studio-wide UI/UX guidelines and document design standards.</p>
+      </div>
+      <div class="role-card fade-in">
+        <h3>Game Design Analysis</h3>
+        <p class="role-context">Systems &middot; Balance &middot; Narrative architecture</p>
+        <p>Full critical analysis of Rogue Reigns' card system across all player classes. Documented leading deckbuilder and narrative-driven games as design references. Performed lore consistency audits across the project.</p>
+      </div>
+      <div class="role-card fade-in">
+        <h3>Player Research</h3>
+        <p class="role-context">Conventions &middot; Observation &middot; Analysis</p>
+        <p>On the floor at GDC, TGS, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what people do (not just what they say), and translating those insights into actionable changes for the team.</p>
+      </div>
+      <div class="role-card fade-in">
+        <h3>Concept Artist</h3>
+        <p class="role-context">HUD elements &middot; Game assets</p>
+        <p>Creating visual assets for Rogue Reigns — HUD elements, UI artwork, and standalone pieces. Bridging the gap between design intent and in-game visuals.</p>
+      </div>
+      <div class="role-card fade-in">
+        <h3>Vibe Coder &amp; Tooling</h3>
+        <p class="role-context">Python &middot; JS &middot; Playwright &middot; Claude Code</p>
+        <p>Built the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.</p>
+      </div>
+      <div class="role-card fade-in">
+        <h3>Research &amp; Strategy</h3>
+        <p class="role-context">ROI &middot; Market &middot; Platform submissions &middot; Go-to-market</p>
+        <p>Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research.</p>
+      </div>
+      <div class="role-card fade-in">
+        <h3>Communications &amp; Documentation</h3>
+        <p class="role-context">Press releases &middot; Guides &middot; Reports</p>
+        <p>Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organized mentorship program notes and maintained executive-level project reporting. Defined the studio's document design standards.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 0;"><div class="divider divider--fade"></div></section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <p class="section-label">// what I've built</p>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="project">
+      <div class="project-visual">
+        <img src="assets/rogue-reigns.png" alt="Rogue Reigns gameplay screenshot" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-info">
+        <h3><a href="https://store.steampowered.com/app/3942630/Rogue_Reigns/" target="_blank" rel="noopener">Rogue Reigns<span class="external-arrow">&#8599;</span></a></h3>
+        <p class="project-meta">Dark fantasy roguelike deckbuilder &middot; 2026</p>
+        <p>Venn Studios' flagship title. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Wrote card descriptions, mechanics, names, and functionality. Contributed to mechanics reconstruction and lore development. Conducted a full critical analysis of the card system across all player classes, referencing leading deckbuilder and narrative-action titles. Provided art feedback for both the digital and physical game. Led player research at every convention.</p>
+        <div class="project-contributions">
+          <span class="tag">HUD Design</span>
+          <span class="tag">Menu Prototype</span>
+          <span class="tag">Card Content</span>
+          <span class="tag">Mechanics</span>
+          <span class="tag">Game Design Analysis</span>
+          <span class="tag">Lore</span>
+          <span class="tag">Art Feedback</span>
+          <span class="tag">Player Research</span>
+          <span class="tag">Concept Art</span>
+          <span class="tag">Steam Page</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-visual">
+        <img src="assets/paradoxical.png" alt="Paradoxical key art" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-info">
+        <h3><a href="https://store.steampowered.com/app/4040750/Paradoxical/" target="_blank" rel="noopener">Paradoxical<span class="external-arrow">&#8599;</span></a></h3>
+        <p class="project-meta">Perception-bending puzzle game &middot; Unity &middot; 2027</p>
+        <p>Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across TGS, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.</p>
+        <div class="project-contributions">
+          <span class="tag">Player Research</span>
+          <span class="tag">Feedback Analysis</span>
+          <span class="tag">Steam Page</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="secondary-projects">
+      <div class="secondary-projects-header">
+        <span class="secondary-projects-label">// also built</span>
+        <hr class="secondary-projects-rule">
+      </div>
+      <div class="secondary-projects-grid">
+        <div class="project-card fade-in">
+          <h3>Studio Tooling</h3>
+          <p class="project-meta">Internal tools &middot; Python &middot; Node.js</p>
+          <p>Built the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.</p>
+          <div class="project-contributions">
+            <span class="tag">Python</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Playwright</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+        <div class="project-card fade-in">
+          <h3>Venn Chat</h3>
+          <p class="project-meta">Internal work hub &middot; Knowledge management</p>
+          <p>Contributed to the design of Venn's custom internal platform. Independently designed a knowledge-management system for tracking narrative and gameplay relationships — with relationship mapping, visual graph navigation, and AI-assisted organization (AI helps manage content, not create it). Built to scale across complex game worlds with hundreds of interconnected entries.</p>
+          <div class="project-contributions">
+            <span class="tag">Knowledge System Design</span>
+            <span class="tag">Feature Spec</span>
+            <span class="tag">MVP Spec</span>
+            <span class="tag">UI (upcoming)</span>
+          </div>
+        </div>
+        <div class="project-card fade-in">
+          <h3>Documentation &amp; Comms</h3>
+          <p class="project-meta">Press releases &middot; Guides &middot; Standards</p>
+          <p>Press releases for both games across multiple events. Internal event preparation guides and team documentation. Mentorship program notes organized for the team. Executive-level project reporting. Studio-wide UI/UX design guidelines (WCAG, typography, spacing, animation) and document design standards.</p>
+          <div class="project-contributions">
+            <span class="tag">Press Releases</span>
+            <span class="tag">Event Guides</span>
+            <span class="tag">UI/UX Guidelines</span>
+            <span class="tag">Design Standards</span>
+          </div>
+        </div>
+        <div class="project-card fade-in">
+          <h3>Research &amp; Strategy</h3>
+          <p class="project-meta">ROI &middot; Market analysis &middot; Platform submissions &middot; Go-to-market</p>
+          <p>Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research for international studios.</p>
+          <div class="project-contributions">
+            <span class="tag">Convention ROI</span>
+            <span class="tag">Platform Submissions</span>
+            <span class="tag">Go-to-market Strategy</span>
+            <span class="tag">Competitive Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 0;"><div class="divider divider--fade"></div></section>
+
+  <!-- Events -->
+  <section class="events" id="events">
+    <p class="section-label">// where I've been</p>
+    <h2 class="section-title">Events</h2>
+    <div class="events-list">
+      <div class="event-card fade-in">
+        <h4>Tokyo Game Show</h4>
+        <p class="event-year">Sep 2025</p>
+        <p>First international showcase. Focused on Rogue Reigns — observed how Japanese players approached the deckbuilder differently from Western playtests.</p>
+      </div>
+      <div class="event-card fade-in">
+        <h4>BCN Game Fest</h4>
+        <p class="event-year">Oct 2025</p>
+        <p>Barcelona. Solo exhibitor — represented both Rogue Reigns and Paradoxical alone. Tracked what confused players vs. what they said confused them — often different things.</p>
+      </div>
+      <div class="event-card fade-in">
+        <h4>Paris Games Week</h4>
+        <p class="event-year">Oct 2025</p>
+        <p>Paris. Attended as a scout — evaluating whether the event would be worth exhibiting at, documenting ideas and observations for the team.</p>
+      </div>
+      <div class="event-card fade-in">
+        <h4>Milan Games Week</h4>
+        <p class="event-year">Nov 2025</p>
+        <p>Responsible for Rogue Reigns across both versions. Mastered the physical card game for players and collected feedback. Presented the digital version, observed gameplay, and gathered insights.</p>
+      </div>
+      <div class="event-card fade-in">
+        <h4>GDC</h4>
+        <p class="event-year">Mar 2026</p>
+        <p>San Francisco. Collected player feedback for both Rogue Reigns and Paradoxical — observations directly shaped design iterations for both games.</p>
+      </div>
+      <div class="event-card fade-in">
+        <h4>Gamescom LATAM</h4>
+        <p class="event-year">Apr 2026</p>
+        <p>Latin American market. Venn's home turf — evaluating regional reception and gathering feedback from the local player base.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 0;"><div class="divider divider--fade"></div></section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <p class="section-label">// say hi</p>
+    <h2 class="section-title">Contact</h2>
+    <a class="contact-prompt" href="mailto:rafabianck@venn-studios.com">
+      <span class="caret" style="color: var(--accent-mauve);">&gt;</span>
+      <span>rafabianck@venn-studios.com</span>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-logo">Rafa Bianck &middot; Venn Studios</span>
+    <div class="footer-cats">
+      <img class="cat-pantu" src="assets/pantu.png" alt="Pantu">
+      <img class="cat-sus" src="assets/sus.png" alt="Sus">
+      <img class="cat-presun" src="assets/presun.png" alt="Presun">
+    </div>
+  </footer>
+  <div style="max-width: 1080px; margin: 0 auto; padding: 0 40px 48px; margin-top: -32px; text-align: right; position: relative; z-index: 1;">
+    <a href="#hero" class="back-to-top">Back to top ↑</a>
+  </div>
+
+  <script>
+    // ── Loading Screen ──
+    window.addEventListener('load', () => {
+      const textEl = document.getElementById('loader-text');
+      const cursorEl = document.getElementById('loader-cursor');
+      const line = document.getElementById('loader-line');
+      const loader = document.getElementById('loader');
+
+      const fullName = 'Rafaella Bianck';
+      const finalName = 'Rafa Bianck';
+      const typeSpeed = 70;
+      const deleteSpeed = 90;
+      const moveSpeed = 50;
+
+      // We use two spans so we can position cursor in the middle of text
+      // textEl shows text BEFORE cursor, afterEl shows text AFTER cursor
+      const afterEl = document.createElement('span');
+      afterEl.className = 'loader-name';
+      cursorEl.after(afterEl);
+
+      let before = '';
+      let after = '';
+
+      function render() {
+        textEl.textContent = before;
+        afterEl.textContent = after;
+      }
+
+      // Phase 1: Type "Rafaella Bianck"
+      function typeForward(pos) {
+        if (pos < fullName.length) {
+          before = fullName.slice(0, pos + 1);
+          after = '';
+          render();
+          setTimeout(() => typeForward(pos + 1), typeSpeed);
+        } else {
+          // Pause, then move cursor back
+          setTimeout(moveCursorBack, 800);
+        }
+      }
+
+      // Phase 2: Move cursor back from end of "Bianck" to end of "Rafaella"
+      // Cursor travels: "Rafaella Bianck|" → "Rafaella| Bianck"
+      function moveCursorBack() {
+        // "Rafaella" is 8 chars, so cursor should end at position 8
+        const target = 8; // after "Rafaella"
+        let pos = fullName.length;
+
+        function step() {
+          if (pos > target) {
+            pos--;
+            before = fullName.slice(0, pos);
+            after = fullName.slice(pos);
+            render();
+            setTimeout(step, moveSpeed);
+          } else {
+            // Pause, then delete "ella"
+            setTimeout(deleteElla, 400);
+          }
+        }
+        step();
+      }
+
+      // Phase 3: Delete "ella" backwards (positions 7,6,5,4)
+      function deleteElla() {
+        // before = "Rafaella", after = " Bianck"
+        // delete last char of 'before' until before = "Rafa"
+        const target = 4; // "Rafa"
+
+        function step() {
+          if (before.length > target) {
+            before = before.slice(0, -1);
+            render();
+            setTimeout(step, deleteSpeed);
+          } else {
+            // Now: before="Rafa", after=" Bianck" → "Rafa Bianck"
+            // Move cursor to end
+            setTimeout(moveCursorEnd, 300);
+          }
+        }
+        step();
+      }
+
+      // Phase 4: Move cursor to end of "Rafa Bianck"
+      function moveCursorEnd() {
+        const combined = before + after;
+        let pos = before.length;
+
+        function step() {
+          if (pos < combined.length) {
+            pos++;
+            before = combined.slice(0, pos);
+            after = combined.slice(pos);
+            render();
+            setTimeout(step, moveSpeed);
+          } else {
+            setTimeout(expandLine, 500);
+          }
+        }
+        step();
+      }
+
+      // Phase 5: Line expands + star appears
+      function expandLine() {
+        cursorEl.style.display = 'none';
+        line.classList.add('expand');
+        document.getElementById('loader-star').classList.add('visible');
+        setTimeout(revealPage, 700);
+      }
+
+      // Phase 6: Reveal page
+      function revealPage() {
+        document.body.classList.remove('loading');
+        setTimeout(() => loader.classList.add('gone'), 600);
+      }
+
+      // Match spacer height to hero-intro so vertical centering is identical
+      const heroIntro = document.querySelector('.hero-intro');
+      const spacer = document.querySelector('.loader-spacer');
+      if (heroIntro && spacer) {
+        spacer.style.height = heroIntro.offsetHeight + 'px';
+      }
+
+      // Start after brief pause
+      setTimeout(() => typeForward(0), 500);
+    });
+
+    // ── Scroll Reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Floating Particles ──
+    (function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const COUNT = 18;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (let i = 0; i < COUNT; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.5 + 0.5,
+          speedY: -(Math.random() * 0.2 + 0.05),
+          speedX: (Math.random() - 0.5) * 0.15,
+          opacity: Math.random() * 0.3 + 0.05,
+          life: Math.random(),
+          hue: Math.random() > 0.5 ? '203, 166, 247' : '105, 134, 216'
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.y += p.speedY;
+          p.x += p.speedX;
+          p.life += 0.002;
+
+          if (p.y < -10 || p.life > 1) {
+            p.y = canvas.height + 10;
+            p.x = Math.random() * canvas.width;
+            p.life = 0;
+          }
+
+          const alpha = p.opacity * Math.sin(p.life * Math.PI);
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.hue}, ${alpha})`;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.hue}, ${alpha * 0.05})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>
