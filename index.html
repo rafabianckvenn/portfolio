@@ -673,35 +673,10 @@
       inset: 0;
       z-index: 1000;
       background: var(--bg-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .loader-inner {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 48px;
-      width: 100%;
-      max-width: 1080px;
-      padding: 80px 40px 0;
-      min-height: 100vh;
-    }
-
-    .loader-star {
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-
-    .loader-star.visible {
-      opacity: 1;
-    }
-
-    .loader-hero-top {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+    .loader-content {
+      position: absolute;
     }
 
     .loader-name-wrap {
@@ -736,23 +711,15 @@
     }
 
     .loader-line {
-      width: 100%;
+      position: absolute;
       height: 1px;
       background: linear-gradient(90deg, var(--accent-blue), var(--accent-mauve));
-      margin-top: 16px;
       transform: scaleX(0);
       transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .loader-line.expand {
       transform: scaleX(1);
-    }
-
-    /* Reserve same space as hero-intro below the name to match vertical centering */
-    .loader-spacer {
-      max-width: 720px;
-      height: 128px; /* approximate height of hero-intro, overridden by JS */
-      visibility: hidden;
     }
 
     .loader {
@@ -898,7 +865,6 @@
       .hero-name { font-size: 48px; }
       .loader-name { font-size: 48px; }
       .loader-cursor { height: 36px; width: 3px; }
-      .loader-inner { padding-left: 32px; padding-right: 32px; }
       .roles-grid { grid-template-columns: 1fr; }
       .project { grid-template-columns: 1fr; gap: 32px; }
       .project:nth-child(even) .project-visual { order: 0; }
@@ -919,8 +885,6 @@
       .hero-name { font-size: 36px; letter-spacing: 3px; }
       .loader-name { font-size: 36px; letter-spacing: 3px; }
       .loader-cursor { height: 28px; width: 2px; }
-      .loader-inner { padding-left: 24px; padding-right: 24px; }
-      .loader-star { width: 40px; height: 40px; }
       .hero-subtitle { font-size: 16px; }
       .section-title { font-size: 28px; }
       .role-card p, .project-card p, .project-info p { font-size: 15px; }
@@ -936,18 +900,12 @@
 
   <!-- Loading Screen — mirrors .hero layout exactly -->
   <div class="loader" id="loader">
-    <div class="loader-inner">
-      <div>
-        <div class="loader-hero-top">
-          <div class="loader-name-wrap">
-            <span class="loader-name" id="loader-text"></span><span class="loader-cursor" id="loader-cursor"></span>
-          </div>
-          <img class="star-icon loader-star" src="assets/star-icon.svg" alt="" id="loader-star">
-        </div>
-        <div class="loader-line" id="loader-line"></div>
+    <div class="loader-content" id="loader-content">
+      <div class="loader-name-wrap">
+        <span class="loader-name" id="loader-text"></span><span class="loader-cursor" id="loader-cursor"></span>
       </div>
-      <div class="loader-spacer"></div>
     </div>
+    <div class="loader-line" id="loader-line"></div>
   </div>
 
   <!-- Background Effects -->
@@ -1214,21 +1172,52 @@
   </div>
 
   <script>
+    // ── Scroll to top on load ──
+    window.scrollTo(0, 0);
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
     // ── Loading Screen ──
     window.addEventListener('load', () => {
+      window.scrollTo(0, 0);
+
       const textEl = document.getElementById('loader-text');
       const cursorEl = document.getElementById('loader-cursor');
+      const loaderContent = document.getElementById('loader-content');
       const line = document.getElementById('loader-line');
       const loader = document.getElementById('loader');
 
       const fullName = 'Rafaella Bianck';
-      const finalName = 'Rafa Bianck';
       const typeSpeed = 70;
       const deleteSpeed = 90;
       const moveSpeed = 50;
 
-      // We use two spans so we can position cursor in the middle of text
-      // textEl shows text BEFORE cursor, afterEl shows text AFTER cursor
+      // Position loader text exactly where hero-name is
+      function positionLoader() {
+        const heroName = document.querySelector('.hero-name');
+        const heroDivider = document.querySelector('.hero .divider');
+        if (heroName) {
+          const rect = heroName.getBoundingClientRect();
+          loaderContent.style.left = rect.left + 'px';
+          loaderContent.style.top = rect.top + 'px';
+        }
+        if (heroDivider) {
+          const dRect = heroDivider.getBoundingClientRect();
+          line.style.left = dRect.left + 'px';
+          line.style.width = dRect.width + 'px';
+          line.style.top = dRect.top + 'px';
+        }
+      }
+
+      // Wait for fonts then position
+      document.fonts.ready.then(() => {
+        positionLoader();
+        // Start typing after positioned
+        setTimeout(() => typeForward(0), 500);
+      });
+
+      window.addEventListener('resize', positionLoader);
+
+      // Two spans: before cursor + after cursor
       const afterEl = document.createElement('span');
       afterEl.className = 'loader-name';
       cursorEl.after(afterEl);
@@ -1241,7 +1230,6 @@
         afterEl.textContent = after;
       }
 
-      // Phase 1: Type "Rafaella Bianck"
       function typeForward(pos) {
         if (pos < fullName.length) {
           before = fullName.slice(0, pos + 1);
@@ -1249,18 +1237,13 @@
           render();
           setTimeout(() => typeForward(pos + 1), typeSpeed);
         } else {
-          // Pause, then move cursor back
           setTimeout(moveCursorBack, 800);
         }
       }
 
-      // Phase 2: Move cursor back from end of "Bianck" to end of "Rafaella"
-      // Cursor travels: "Rafaella Bianck|" → "Rafaella| Bianck"
       function moveCursorBack() {
-        // "Rafaella" is 8 chars, so cursor should end at position 8
-        const target = 8; // after "Rafaella"
+        const target = 8;
         let pos = fullName.length;
-
         function step() {
           if (pos > target) {
             pos--;
@@ -1269,38 +1252,29 @@
             render();
             setTimeout(step, moveSpeed);
           } else {
-            // Pause, then delete "ella"
             setTimeout(deleteElla, 400);
           }
         }
         step();
       }
 
-      // Phase 3: Delete "ella" backwards (positions 7,6,5,4)
       function deleteElla() {
-        // before = "Rafaella", after = " Bianck"
-        // delete last char of 'before' until before = "Rafa"
-        const target = 4; // "Rafa"
-
+        const target = 4;
         function step() {
           if (before.length > target) {
             before = before.slice(0, -1);
             render();
             setTimeout(step, deleteSpeed);
           } else {
-            // Now: before="Rafa", after=" Bianck" → "Rafa Bianck"
-            // Move cursor to end
             setTimeout(moveCursorEnd, 300);
           }
         }
         step();
       }
 
-      // Phase 4: Move cursor to end of "Rafa Bianck"
       function moveCursorEnd() {
         const combined = before + after;
         let pos = before.length;
-
         function step() {
           if (pos < combined.length) {
             pos++;
@@ -1315,35 +1289,16 @@
         step();
       }
 
-      // Phase 5: Line expands + star appears
       function expandLine() {
         cursorEl.style.display = 'none';
         line.classList.add('expand');
-        document.getElementById('loader-star').classList.add('visible');
         setTimeout(revealPage, 700);
       }
 
-      // Phase 6: Reveal page
       function revealPage() {
         document.body.classList.remove('loading');
         setTimeout(() => loader.classList.add('gone'), 600);
       }
-
-      // Match spacer height to hero-intro so vertical centering is identical
-      function syncSpacer() {
-        const heroIntro = document.querySelector('.hero-intro');
-        const spacer = document.querySelector('.loader-spacer');
-        if (heroIntro && spacer) {
-          spacer.style.height = heroIntro.offsetHeight + 'px';
-        }
-      }
-      syncSpacer();
-      window.addEventListener('resize', syncSpacer);
-      // Recalculate after fonts load
-      document.fonts.ready.then(syncSpacer);
-
-      // Start after brief pause
-      setTimeout(() => typeForward(0), 500);
     });
 
     // ── Scroll Reveal ──
