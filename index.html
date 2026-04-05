@@ -265,6 +265,22 @@
       height: 64px;
       flex-shrink: 0;
       animation: starSpin 60s linear infinite;
+      position: relative;
+    }
+
+    .star-glow {
+      position: relative;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .star-glow::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: rgba(203, 166, 247, 0.3);
+      box-shadow: 0 0 32px 16px rgba(203, 166, 247, 0.15);
     }
 
     @keyframes starSpin {
@@ -946,7 +962,7 @@
     <div>
       <div class="hero-top">
         <h1 class="hero-name">Rafa <span>Bianck</span></h1>
-        <img class="star-icon" src="assets/star-icon.svg" alt="">
+        <span class="star-glow"><img class="star-icon" src="assets/star-icon.svg" alt=""></span>
       </div>
       <div class="divider" style="margin-top: 16px;"></div>
     </div>
