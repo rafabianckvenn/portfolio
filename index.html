@@ -277,10 +277,9 @@
     .star-glow::before {
       content: '';
       position: absolute;
-      inset: 12px;
+      inset: -16px;
       border-radius: 50%;
-      background: rgba(203, 166, 247, 0.06);
-      box-shadow: 0 0 40px 24px rgba(203, 166, 247, 0.06);
+      background: radial-gradient(circle, rgba(203, 166, 247, 0.08) 0%, transparent 60%);
     }
 
     @keyframes starSpin {
@@ -906,11 +905,19 @@
       .hero-name { font-size: 36px; letter-spacing: 3px; }
       .loader-name { font-size: 36px; letter-spacing: 3px; }
       .loader-cursor { height: 28px; width: 2px; }
-      .hero-subtitle { font-size: 16px; }
+      .hero-subtitle { font-size: 17px; }
       .section-title { font-size: 28px; }
-      .role-card p, .project-card p, .project-info p { font-size: 15px; }
-      .event-card p { font-size: 14px; }
+      .section-label { font-size: 13px; }
+      .role-card h3, .project-card h3 { font-size: 18px; }
+      .role-card p, .project-card p, .project-info p { font-size: 16px; line-height: 1.8; }
       .role-card .role-context { font-size: 14px; }
+      .event-card h4 { font-size: 17px; }
+      .event-card p { font-size: 15px; line-height: 1.7; }
+      .event-card .event-year { font-size: 14px; }
+      .project-info h3 { font-size: 24px; }
+      .project-meta { font-size: 14px; }
+      .tag { font-size: 13px; }
+      .contact-prompt { font-size: 16px; }
       .events-list { grid-template-columns: 1fr; }
       footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
       .back-to-top-wrap { text-align: center; }
