@@ -1183,13 +1183,8 @@
 
     // ── Loading Screen ──
     window.addEventListener('load', () => {
-      // Force scroll to top aggressively
+      // Force scroll to top
       window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      // Retry after a tick for mobile Safari
-      setTimeout(() => { window.scrollTo(0, 0); }, 0);
-      setTimeout(() => { window.scrollTo(0, 0); }, 50);
 
       const textEl = document.getElementById('loader-text');
       const cursorEl = document.getElementById('loader-cursor');
@@ -1238,10 +1233,7 @@
         });
       });
 
-      window.addEventListener('resize', () => {
-        window.scrollTo(0, 0);
-        positionLoader();
-      });
+      window.addEventListener('resize', positionLoader);
 
       // Two spans: before cursor + after cursor
       const afterEl = document.createElement('span');
