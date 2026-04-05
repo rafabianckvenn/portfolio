@@ -5,7 +5,7 @@ Personal portfolio — UI/UX & game designer, vibe coder at [Venn Studios](https
 ## Stack
 
 - HTML / CSS / vanilla JS
-- Design system: [Aurora](https://www.figma.com/design/u0gVBF2iTPYp0mXUL6h4F3/Aurora-UI)
+- Design system: Aurora
 - Hosted on GitHub Pages
 
 ## Features
