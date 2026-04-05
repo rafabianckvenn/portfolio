@@ -68,6 +68,12 @@
     a { color: var(--accent-mauve); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+    /* ── Focus states ── */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-mauve);
+      outline-offset: 2px;
+    }
+
     .external-arrow {
       font-size: 0.55em;
       vertical-align: super;
@@ -144,10 +150,11 @@
       background: none;
       border: none;
       cursor: pointer;
-      width: 32px;
-      height: 32px;
+      width: 44px;
+      height: 44px;
       position: relative;
       z-index: 102;
+      padding: 6px;
     }
 
     .nav-toggle span {
@@ -337,9 +344,11 @@
       transition: border-color 0.2s, background 0.2s;
     }
 
-    .tag:hover {
-      border-color: var(--accent-mauve);
-      background: rgba(203, 166, 247, 0.08);
+    @media (hover: hover) {
+      .tag:hover {
+        border-color: var(--accent-mauve);
+        background: rgba(203, 166, 247, 0.08);
+      }
     }
 
     .tag .slash {
@@ -383,9 +392,11 @@
       transition: border-color 0.3s, transform 0.3s;
     }
 
-    .role-card:hover {
-      border-color: var(--accent-mauve);
-      transform: translateY(-2px);
+    @media (hover: hover) {
+      .role-card:hover {
+        border-color: var(--accent-mauve);
+        transform: translateY(-2px);
+      }
     }
 
     .role-card h3 {
@@ -518,9 +529,11 @@
       transition: border-color 0.3s, transform 0.3s;
     }
 
-    .project-card:hover {
-      border-color: var(--accent-mauve);
-      transform: translateY(-2px);
+    @media (hover: hover) {
+      .project-card:hover {
+        border-color: var(--accent-mauve);
+        transform: translateY(-2px);
+      }
     }
 
     .project-card h3 {
@@ -579,8 +592,10 @@
       transition: border-color 0.3s;
     }
 
-    .event-card:hover {
-      border-color: var(--accent-blue);
+    @media (hover: hover) {
+      .event-card:hover {
+        border-color: var(--accent-blue);
+      }
     }
 
     .event-card h4 {
@@ -661,6 +676,8 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      padding: 12px 0;
+      min-height: 44px;
     }
 
     .back-to-top:hover {
@@ -931,9 +948,13 @@
       .events-list { grid-template-columns: 1fr; }
       footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
       .back-to-top-wrap { text-align: center !important; }
-      .contact-prompt { white-space: nowrap; padding: 16px 24px; }
+      .contact-prompt { padding: 16px 24px; font-size: 14px; }
+      .star-icon { width: 40px; height: 40px; flex-shrink: 1; }
+      .loader-name { font-size: 28px; letter-spacing: 2px; }
+      .loader-cursor { height: 22px; width: 2px; }
     }
-  </style>
+    </style>
+  <noscript><style>.loader{display:none!important}body.loading nav,body.loading .hero,body.loading .roles,body.loading .projects,body.loading .events,body.loading .contact,body.loading footer{opacity:1!important}</style></noscript>
 </head>
 <body class="loading">
 
@@ -964,11 +985,11 @@
       <li><a href="#events">Events</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
-  <div class="nav-overlay" id="nav-overlay">
+  <div class="nav-overlay" id="nav-overlay" role="navigation" aria-label="Mobile navigation">
     <a href="#roles">Roles</a>
     <a href="#projects">Projects</a>
     <a href="#events">Events</a>
@@ -1054,7 +1075,7 @@
 
     <div class="project">
       <div class="project-visual">
-        <img src="assets/rogue-reigns.png" alt="Rogue Reigns gameplay screenshot" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="assets/rogue-reigns.jpg" alt="Rogue Reigns gameplay screenshot" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <div class="project-info">
         <h3><a href="https://store.steampowered.com/app/3942630/Rogue_Reigns/" target="_blank" rel="noopener">Rogue Reigns<span class="external-arrow">&#8599;&#xFE0E;</span></a></h3>
@@ -1077,7 +1098,7 @@
 
     <div class="project">
       <div class="project-visual">
-        <img src="assets/paradoxical.png" alt="Paradoxical key art" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="assets/paradoxical.jpg" alt="Paradoxical key art" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <div class="project-info">
         <h3><a href="https://store.steampowered.com/app/4040750/Paradoxical/" target="_blank" rel="noopener">Paradoxical<span class="external-arrow">&#8599;&#xFE0E;</span></a></h3>
@@ -1368,18 +1389,29 @@
     const navToggle = document.getElementById('nav-toggle');
     const navOverlay = document.getElementById('nav-overlay');
 
-    navToggle.addEventListener('click', () => {
+    function toggleMenu() {
       navToggle.classList.toggle('open');
       navOverlay.classList.toggle('open');
-      document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
-    });
+      const isOpen = navOverlay.classList.contains('open');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      navToggle.setAttribute('aria-expanded', isOpen);
+    }
+
+    function closeMenu() {
+      navToggle.classList.remove('open');
+      navOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    navToggle.addEventListener('click', toggleMenu);
 
     navOverlay.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.classList.remove('open');
-        navOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navOverlay.classList.contains('open')) closeMenu();
     });
 
     // ── Floating Particles ──
@@ -1410,6 +1442,7 @@
       }
 
       function animate() {
+        if (document.hidden) { requestAnimationFrame(animate); return; }
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach(p => {
           p.y += p.speedY;
