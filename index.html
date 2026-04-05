@@ -763,31 +763,31 @@
 
     .aurora-ribbon {
       position: absolute;
-      width: 200%;
-      height: 300px;
+      width: 250%;
+      height: 600px;
       opacity: 0;
-      filter: blur(80px);
       border-radius: 50%;
+      will-change: transform, opacity;
     }
 
     .aurora-ribbon--1 {
       top: 10%;
-      left: -50%;
-      background: linear-gradient(90deg, transparent, rgba(105, 134, 216, 0.06), rgba(203, 166, 247, 0.04), transparent);
+      left: -75%;
+      background: radial-gradient(ellipse at center, rgba(105, 134, 216, 0.06) 0%, rgba(203, 166, 247, 0.03) 40%, transparent 70%);
       animation: ribbonDrift 14s ease-in-out infinite;
     }
 
     .aurora-ribbon--2 {
       top: 50%;
-      left: -50%;
-      background: linear-gradient(90deg, transparent, rgba(203, 166, 247, 0.05), rgba(105, 134, 216, 0.03), transparent);
+      left: -75%;
+      background: radial-gradient(ellipse at center, rgba(203, 166, 247, 0.05) 0%, rgba(105, 134, 216, 0.02) 40%, transparent 70%);
       animation: ribbonDrift 18s ease-in-out infinite -5s;
     }
 
     .aurora-ribbon--3 {
       top: 80%;
-      left: -50%;
-      background: linear-gradient(90deg, transparent, rgba(105, 134, 216, 0.04), rgba(203, 166, 247, 0.06), transparent);
+      left: -75%;
+      background: radial-gradient(ellipse at center, rgba(105, 134, 216, 0.04) 0%, rgba(203, 166, 247, 0.04) 40%, transparent 70%);
       animation: ribbonDrift 16s ease-in-out infinite -9s;
     }
 
