@@ -624,6 +624,8 @@
       display: flex;
       align-items: baseline;
       white-space: nowrap;
+      min-width: 0;
+      overflow: hidden;
     }
 
     .loader-name {
@@ -812,6 +814,9 @@
     @media (max-width: 1024px) {
       nav { padding: 16px 32px; }
       .hero-name { font-size: 48px; }
+      .loader-name { font-size: 48px; }
+      .loader-cursor { height: 36px; width: 3px; }
+      .loader { padding-left: 32px; padding-right: 32px; }
       .roles-grid { grid-template-columns: 1fr; }
       .project { grid-template-columns: 1fr; gap: 32px; }
       .project:nth-child(even) .project-visual { order: 0; }
@@ -826,10 +831,15 @@
       .nav-links a { font-size: 12px; }
       section { padding: 0 24px; }
       .hero-name { font-size: 36px; letter-spacing: 3px; }
+      .loader-name { font-size: 36px; letter-spacing: 3px; }
+      .loader-cursor { height: 28px; width: 2px; }
+      .loader { padding-left: 24px; padding-right: 24px; }
+      .loader-star { width: 40px; height: 40px; }
       .hero-subtitle { font-size: 16px; }
       .section-title { font-size: 28px; }
       .events-list { grid-template-columns: 1fr; }
       footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
+      .back-to-top-wrap { text-align: center; }
     }
   </style>
 </head>
@@ -1099,7 +1109,7 @@
       <img class="cat-presun" src="assets/presun.png" alt="Presun">
     </div>
   </footer>
-  <div style="max-width: 1080px; margin: 0 auto; padding: 0 40px 48px; margin-top: -32px; text-align: right; position: relative; z-index: 1;">
+  <div class="back-to-top-wrap" style="max-width: 1080px; margin: 0 auto; padding: 0 40px 48px; margin-top: -32px; text-align: right; position: relative; z-index: 1;">
     <a href="#hero" class="back-to-top">Back to top ↑</a>
   </div>
 
