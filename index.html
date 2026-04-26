@@ -58,8 +58,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     /* ── Reset ── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -74,8 +74,8 @@
       --text-primary: #f3f3f3;
       --text-secondary: rgba(243, 243, 243, 0.6);
       --text-muted: rgba(243, 243, 243, 0.4);
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+      --font-display: 'IBM Plex Mono', 'Consolas', 'Monaco', monospace;
+      --font-mono: 'IBM Plex Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
       --radius-sm: 4px;
       --radius-md: 8px;
       --radius-lg: 16px;
@@ -221,11 +221,13 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 40px;
+      gap: 32px;
+      padding: 120px 24px 80px;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transition: opacity 0.3s ease, visibility 0.3s ease;
+      overflow-y: auto;
     }
 
     .nav-overlay.open {
@@ -582,6 +584,11 @@
       display: block;
       transform: scale(1.5);
       transform-origin: center;
+    }
+    @media (max-width: 768px) {
+      .venn-grid > video {
+        transform: scale(1.15);
+      }
     }
 
 
@@ -1104,8 +1111,8 @@
       .contact-prompt { padding: 16px 24px; font-size: 16px; }
       /* Layout */
       .events-list { grid-template-columns: 1fr; }
-      footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
-      .back-to-top-wrap { text-align: center !important; }
+      footer { padding: 40px 24px 48px; flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+      .footer-logo { text-align: center; }
     }
 
     /* ── Nav controls (lang + a11y) ── */
@@ -1330,7 +1337,14 @@
       nav { justify-content: flex-start; }
       .nav-logo { margin-right: auto; }
       .nav-controls { gap: 8px; margin-left: 0; margin-right: 8px; }
-      .nav-control-btn { font-size: 12px; padding: 5px 8px; }
+      .nav-control-btn {
+        font-size: 12px;
+        padding: 0 8px;
+        height: 36px;
+        border-color: rgba(243, 243, 243, 0.28);
+        color: var(--text-primary);
+      }
+      .nav-control-btn svg { width: 18px; height: 18px; }
       #lang-toggle { display: none; }
       .a11y-panel { right: 12px; left: 12px; width: auto; top: 64px; }
     }
@@ -1487,7 +1501,7 @@
       <div class="role-card fade-in">
         <h3 data-i18n="roles.research.title">Player Research</h3>
         <p class="role-context" data-i18n="roles.research.context">Conventions &middot; Observation &middot; Analysis</p>
-        <p data-i18n="roles.research.body">On the floor at GDC, TGS, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what people do (not just what they say), and translating those insights into actionable changes for the team.</p>
+        <p data-i18n="roles.research.body">On the floor at GDC, Tokyo Game Show, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what players do (not just what they say), and translating those insights into actionable changes for the team.</p>
       </div>
       <div class="role-card fade-in">
         <h3 data-i18n="roles.concept.title">Concept Artist</h3>
@@ -1497,7 +1511,7 @@
       <div class="role-card fade-in">
         <h3 data-i18n="roles.vibe.title">Vibe Coder &amp; Tooling</h3>
         <p class="role-context" data-i18n="roles.vibe.context">Python &middot; JS &middot; Playwright &middot; Claude Code</p>
-        <p data-i18n="roles.vibe.body">Built the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.</p>
+        <p data-i18n="roles.vibe.body">Built some of the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.</p>
       </div>
       <div class="role-card fade-in">
         <h3 data-i18n="roles.strategy.title">Research &amp; Strategy</h3>
@@ -1507,7 +1521,7 @@
       <div class="role-card fade-in">
         <h3 data-i18n="roles.comms.title">Communications &amp; Documentation</h3>
         <p class="role-context" data-i18n="roles.comms.context">Press releases &middot; Guides &middot; Reports</p>
-        <p data-i18n="roles.comms.body">Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organized mentorship program notes and maintained executive-level project reporting. Defined the studio's document design standards.</p>
+        <p data-i18n="roles.comms.body">Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organize notes from key meetings I attend on the studio's behalf. Defined the studio's document design standards.</p>
       </div>
     </div>
   </section>
@@ -1578,7 +1592,7 @@
       <div class="project-info">
         <h3><a href="https://store.steampowered.com/app/4040750/Paradoxical/" target="_blank" rel="noopener">Paradoxical<span class="external-arrow">&#8599;&#xFE0E;</span></a></h3>
         <p class="project-meta" data-i18n="projects.paradoxical.meta">Perception-bending puzzle game &middot; Unity &middot; 2027</p>
-        <p data-i18n="projects.paradoxical.body">Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across TGS, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.</p>
+        <p data-i18n="projects.paradoxical.body">Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across Tokyo Game Show, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.</p>
         <div class="project-contributions">
           <span class="tag" data-i18n="tags.playerResearch">Player Research</span>
           <span class="tag" data-i18n="tags.feedbackAnalysis">Feedback Analysis</span>
@@ -1596,7 +1610,7 @@
         <div class="project-card fade-in">
           <h3 data-i18n="projects.tooling.title">Studio Tooling</h3>
           <p class="project-meta" data-i18n="projects.tooling.meta">Internal tools &middot; Python &middot; Node.js</p>
-          <p data-i18n="projects.tooling.body">Built the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.</p>
+          <p data-i18n="projects.tooling.body">Built parts of the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.</p>
           <div class="project-contributions">
             <span class="tag">Python</span>
             <span class="tag">Node.js</span>
@@ -1613,28 +1627,6 @@
             <span class="tag" data-i18n="tags.featureSpec">Feature Spec</span>
             <span class="tag" data-i18n="tags.mvpSpec">MVP Spec</span>
             <span class="tag" data-i18n="tags.uiUpcoming">UI (upcoming)</span>
-          </div>
-        </div>
-        <div class="project-card fade-in">
-          <h3 data-i18n="projects.docs.title">Documentation &amp; Comms</h3>
-          <p class="project-meta" data-i18n="projects.docs.meta">Press releases &middot; Guides &middot; Standards</p>
-          <p data-i18n="projects.docs.body">Press releases for both games across multiple events. Internal event preparation guides and team documentation. Mentorship program notes organized for the team. Executive-level project reporting. Studio-wide UI/UX design guidelines (WCAG, typography, spacing, animation) and document design standards.</p>
-          <div class="project-contributions">
-            <span class="tag" data-i18n="tags.pressReleases">Press Releases</span>
-            <span class="tag" data-i18n="tags.eventGuides">Event Guides</span>
-            <span class="tag" data-i18n="tags.uiuxGuidelines">UI/UX Guidelines</span>
-            <span class="tag" data-i18n="tags.designStandards">Design Standards</span>
-          </div>
-        </div>
-        <div class="project-card fade-in">
-          <h3 data-i18n="projects.researchStrategy.title">Research &amp; Strategy</h3>
-          <p class="project-meta" data-i18n="projects.researchStrategy.meta">ROI &middot; Market analysis &middot; Platform submissions &middot; Go-to-market</p>
-          <p data-i18n="projects.researchStrategy.body">Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research for international studios.</p>
-          <div class="project-contributions">
-            <span class="tag" data-i18n="tags.conventionROI">Convention ROI</span>
-            <span class="tag" data-i18n="tags.platformSubmissions">Platform Submissions</span>
-            <span class="tag" data-i18n="tags.gtmStrategy">Go-to-market Strategy</span>
-            <span class="tag" data-i18n="tags.competitiveAnalysis">Competitive Analysis</span>
           </div>
         </div>
       </div>
@@ -2249,19 +2241,19 @@
         'roles.gamedesign.body': 'Authored card descriptions, mechanics, names, and functionality for Rogue Reigns. Full critical analysis of the card system across all player classes. Documented leading deckbuilder and narrative-driven games as design references. Performed lore consistency audits across the project.',
         'roles.research.title': 'Player Research',
         'roles.research.context': 'Conventions · Observation · Analysis',
-        'roles.research.body': 'On the floor at GDC, TGS, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what people do (not just what they say), and translating those insights into actionable changes for the team.',
+        'roles.research.body': 'On the floor at GDC, Tokyo Game Show, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what players do (not just what they say), and translating those insights into actionable changes for the team.',
         'roles.concept.title': 'Concept Artist',
         'roles.concept.context': 'HUD elements · Game assets',
         'roles.concept.body': 'Creating visual assets for Rogue Reigns — HUD elements, UI artwork, and standalone pieces. Bridging the gap between design intent and in-game visuals.',
         'roles.vibe.title': 'Vibe Coder & Tooling',
         'roles.vibe.context': 'Python · JS · Playwright · Claude Code',
-        'roles.vibe.body': "Built the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.",
+        'roles.vibe.body': "Built some of the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.",
         'roles.strategy.title': 'Research & Strategy',
         'roles.strategy.context': 'ROI · Market · Platform submissions · Go-to-market',
         'roles.strategy.body': 'Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research.',
         'roles.comms.title': 'Communications & Documentation',
         'roles.comms.context': 'Press releases · Guides · Reports',
-        'roles.comms.body': "Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organized mentorship program notes and maintained executive-level project reporting. Defined the studio's document design standards.",
+        'roles.comms.body': "Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organize notes from key meetings I attend on the studio's behalf. Defined the studio's document design standards.",
 
         'projects.label': "// what I've built",
         'projects.title': 'Projects',
@@ -2274,16 +2266,16 @@
         'projects.venn.body': "Venn Studios brand redesign. Built from the original logo's intent, pushed into modern, timeless territory — Venn isn't just a games studio, it also produces technology, and the identity had to carry both. Full system: logo, typography, palette, and motion intro.",
         'projects.paradoxical.alt': 'Paradoxical key art',
         'projects.paradoxical.meta': 'Perception-bending puzzle game · Unity · 2027',
-        'projects.paradoxical.body': "Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across TGS, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.",
+        'projects.paradoxical.body': "Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across Tokyo Game Show, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.",
         'projects.tooling.title': 'Studio Tooling',
         'projects.tooling.meta': 'Internal tools · Python · Node.js',
-        'projects.tooling.body': "Built the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.",
+        'projects.tooling.body': "Built parts of the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.",
         'projects.vennChat.title': 'Venn Chat',
         'projects.vennChat.meta': 'Internal work hub · Knowledge management',
         'projects.vennChat.body': "Contributed to the design of Venn's custom internal platform. Independently designed a knowledge-management system for tracking narrative and gameplay relationships — with relationship mapping, visual graph navigation, and AI-assisted organization (AI helps manage content, not create it). Built to scale across complex game worlds with hundreds of interconnected entries.",
         'projects.docs.title': 'Documentation & Comms',
         'projects.docs.meta': 'Press releases · Guides · Standards',
-        'projects.docs.body': 'Press releases for both games across multiple events. Internal event preparation guides and team documentation. Mentorship program notes organized for the team. Executive-level project reporting. Studio-wide UI/UX design guidelines (WCAG, typography, spacing, animation) and document design standards.',
+        'projects.docs.body': "Press releases for both games across multiple events. Internal event preparation guides and team documentation. Notes from key meetings I attend on the studio's behalf, organized for the team. Studio-wide UI/UX design guidelines (WCAG, typography, spacing, animation) and document design standards.",
         'projects.researchStrategy.title': 'Research & Strategy',
         'projects.researchStrategy.meta': 'ROI · Market analysis · Platform submissions · Go-to-market',
         'projects.researchStrategy.body': 'Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research for international studios.',
@@ -2378,44 +2370,44 @@
         'roles.uiux.body': 'Cuido de toda a experiência digital do estúdio — o site da Venn Studios, a presença web do Rogue Reigns e do Paradoxical. Desenhei o HUD in-game e prototipei o menu principal com física customizada. Escrevi as diretrizes de UI/UX que valem pro estúdio inteiro e os padrões de design de documentos.',
         'roles.gamedesign.title': 'Game Design & Análise',
         'roles.gamedesign.context': 'Sistemas · Balanceamento · Arquitetura narrativa',
-        'roles.gamedesign.body': 'Escrevi descrições, mecânicas, nomes e funcionalidade dos cards do Rogue Reigns. Fiz a análise crítica completa do sistema de cards em todas as classes. Mapeei os principais deckbuilders e jogos narrativos como referência de design. Fiz auditoria de consistência de lore em todo o projeto.',
+        'roles.gamedesign.body': 'Escrevi descrições, mecânicas, nomes e funcionalidade das cartas do Rogue Reigns. Fiz a análise crítica completa do sistema de cartas em todas as classes. Mapeei os principais deckbuilders e jogos narrativos como referência de design. Fiz auditoria de consistência de lore em todo o projeto.',
         'roles.research.title': 'Pesquisa com Jogadores',
         'roles.research.context': 'Convenções · Observação · Análise',
-        'roles.research.body': 'Em campo na GDC, TGS, BCN Game Fest, Milan Games Week e Gamescom LATAM — coletando feedback, observando o que as pessoas fazem (não só o que dizem) e transformando isso em mudanças concretas pro time.',
+        'roles.research.body': 'Em campo na GDC, Tokyo Game Show, BCN Game Fest, Milan Games Week e Gamescom LATAM — coletando feedback, observando o que os jogadores fazem (não só o que dizem) e transformando isso em mudanças concretas pro time.',
         'roles.concept.title': 'Concept Artist',
         'roles.concept.context': 'Elementos de HUD · Assets do jogo',
-        'roles.concept.body': 'Crio assets visuais para o Rogue Reigns — elementos de HUD, artwork de UI e peças standalone. Costurando a intenção de design com o visual in-game.',
+        'roles.concept.body': 'Crio assets visuais para o Rogue Reigns — elementos de HUD, artwork de UI e peças standalone. Traduzindo a intenção de design pro visual in-game.',
         'roles.vibe.title': 'Vibe Coder & Tooling',
         'roles.vibe.context': 'Python · JS · Playwright · Claude Code',
-        'roles.vibe.body': 'Construí as ferramentas internas do estúdio: um pipeline pra processar documentos com a identidade da marca, um bot do Discord robusto pra gestão da comunidade, ferramentas de analytics pra entender o engajamento na comunidade, e uma timeline interativa de lore.',
+        'roles.vibe.body': 'Construí algumas das ferramentas internas do estúdio: um pipeline pra processar documentos com a identidade da marca, um bot do Discord robusto pra gestão da comunidade, ferramentas de analytics pra entender o engajamento na comunidade, e uma timeline interativa de lore.',
         'roles.strategy.title': 'Pesquisa & Estratégia',
         'roles.strategy.context': 'ROI · Mercado · Submissões em plataformas · Go-to-market',
         'roles.strategy.body': 'Análise de ROI de convenções e metodologia de pesquisa pra playtesting. Análise competitiva de estúdios indie que dão certo em mercados emergentes. Pesquisa dos processos de submissão nas principais lojas. Estratégia de go-to-market pra crowdfunding, incluindo pesquisa regulatória e logística.',
         'roles.comms.title': 'Comunicação & Documentação',
         'roles.comms.context': 'Press releases · Guias · Relatórios',
-        'roles.comms.body': 'Escrevi press releases dos dois jogos em vários eventos. Criei guias internos de preparação pra eventos e documentação do time. Organizei as notas do programa de mentoria e mantive os reports executivos rodando. Defini os padrões de design de documentos do estúdio.',
+        'roles.comms.body': 'Escrevi press releases dos dois jogos em vários eventos. Criei guias internos de preparação pra eventos e documentação do time. Organizo as notas das reuniões importantes que faço em nome da empresa. Defini os padrões de design de documentos do estúdio.',
 
         'projects.label': '// o que eu construí',
         'projects.title': 'Projetos',
         'projects.secondaryLabel': '// também construí',
         'projects.rogue.alt': 'Screenshot do Rogue Reigns',
         'projects.rogue.meta': 'Deckbuilder roguelike de fantasia sombria · 2026',
-        'projects.rogue.body': 'O carro-chefe da Venn Studios. Desenhei o HUD in-game e prototipei o menu principal com física customizada. Escrevi descrições, mecânicas, nomes e funcionalidade dos cards. Contribuí na reconstrução das mecânicas e no desenvolvimento de lore. Fiz uma análise crítica completa do sistema de cards em todas as classes, com referências dos principais deckbuilders e jogos de narrativa-ação. Dei feedback de arte tanto pro jogo digital quanto pro físico. Liderei a pesquisa com jogadores em todas as convenções.',
+        'projects.rogue.body': 'O carro-chefe da Venn Studios. Desenhei o HUD in-game e prototipei o menu principal com física customizada. Escrevi descrições, mecânicas, nomes e funcionalidade das cartas. Contribuí na reconstrução das mecânicas e no desenvolvimento de lore. Fiz uma análise crítica completa do sistema de cartas em todas as classes, com referências dos principais deckbuilders e jogos de narrativa-ação. Dei feedback de arte tanto pro jogo digital quanto pro físico. Liderei a pesquisa com jogadores em todas as convenções.',
         'projects.venn.alt': 'Animação de intro da logo da Venn Studios',
         'projects.venn.meta': 'Identidade visual · Motion intro · 2026',
         'projects.venn.body': 'Redesign da identidade da Venn Studios. Parti do ideal original da logo e levei a marca pra um território moderno e atemporal — a Venn não é só um estúdio de jogos, também produz tecnologia, e a identidade precisava abraçar isso. Sistema completo: logo, tipografia, palette e motion intro.',
         'projects.paradoxical.alt': 'Key art do Paradoxical',
         'projects.paradoxical.meta': 'Puzzle game que distorce a percepção · Unity · 2027',
-        'projects.paradoxical.body': 'O puzzle game da Venn Studios que distorce a percepção. Meu papel: coletar e sintetizar feedback dos jogadores em TGS, BCN Game Fest, Milan Games Week e GDC. Observar como o pessoal de fato interage com os puzzles e levar esses insights de volta pro time.',
+        'projects.paradoxical.body': 'O puzzle game da Venn Studios que distorce a percepção. Meu papel: coletar e sintetizar feedback dos jogadores na Tokyo Game Show, BCN Game Fest, Milan Games Week e GDC. Observar como os jogadores de fato interagem com os puzzles e levar esses insights de volta pro time.',
         'projects.tooling.title': 'Ferramentas do Estúdio',
         'projects.tooling.meta': 'Ferramentas internas · Python · Node.js',
-        'projects.tooling.body': 'Construí a infraestrutura interna do estúdio: pipeline pra processar documentos com a identidade da marca, bot do Discord robusto pra gestão da comunidade, ferramentas de analytics pra entender o engajamento no conteúdo do YouTube, e uma timeline interativa de lore.',
+        'projects.tooling.body': 'Construí parte da infraestrutura interna do estúdio: pipeline pra processar documentos com a identidade da marca, bot do Discord robusto pra gestão da comunidade, ferramentas de analytics pra entender o engajamento no conteúdo do YouTube, e uma timeline interativa de lore.',
         'projects.vennChat.title': 'Venn Chat',
         'projects.vennChat.meta': 'Hub interno de trabalho · Gestão de conhecimento',
         'projects.vennChat.body': 'Contribuí no design da plataforma interna customizada da Venn. Desenhei sozinha um sistema de gestão de conhecimento pra rastrear relações entre narrativa e gameplay — com mapeamento de relações, navegação visual em grafo e organização assistida por IA (a IA ajuda a organizar o conteúdo, não a criá-lo). Construído pra escalar em mundos complexos com centenas de entradas interconectadas.',
         'projects.docs.title': 'Documentação & Comunicação',
         'projects.docs.meta': 'Press releases · Guias · Padrões',
-        'projects.docs.body': 'Press releases dos dois jogos em vários eventos. Guias internos de preparação pra eventos e documentação do time. Notas do programa de mentoria organizadas pro time. Reports executivos de projetos. Diretrizes de UI/UX do estúdio (WCAG, tipografia, espaçamento, animação) e padrões de design de documentos.',
+        'projects.docs.body': 'Press releases dos dois jogos em vários eventos. Guias internos de preparação pra eventos e documentação do time. Notas das reuniões importantes que faço em nome da empresa, organizadas pro time. Diretrizes de UI/UX do estúdio (WCAG, tipografia, espaçamento, animação) e padrões de design de documentos.',
         'projects.researchStrategy.title': 'Pesquisa & Estratégia',
         'projects.researchStrategy.meta': 'ROI · Análise de mercado · Submissões em plataformas · Go-to-market',
         'projects.researchStrategy.body': 'Análise de ROI de convenções e metodologia de pesquisa pra playtesting. Análise competitiva de estúdios indie que dão certo em mercados emergentes. Pesquisa dos processos de submissão nas principais lojas. Estratégia de go-to-market pra crowdfunding, com pesquisa regulatória e logística pra estúdios internacionais.',
@@ -2601,6 +2593,45 @@
       });
     }
     syncProjectVideos();
+
+    // Mobile browsers (especially Safari) often pause autoplay videos to save
+    // battery/data. Re-play whenever they enter the viewport, and recover from
+    // unexpected pauses unless reduced-motion is on.
+    (() => {
+      const videos = document.querySelectorAll('.project-video');
+      if (!videos.length) return;
+      const reduceCheck = () =>
+        document.documentElement.classList.contains('a11y-reduce-motion') ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const tryPlay = (v) => {
+        if (reduceCheck()) return;
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      };
+      videos.forEach((v) => {
+        v.addEventListener('pause', () => {
+          if (v.ended) return;
+          if (document.visibilityState !== 'visible') return;
+          requestAnimationFrame(() => tryPlay(v));
+        });
+      });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) tryPlay(e.target);
+          else e.target.pause();
+        });
+      }, { threshold: 0.15 });
+      videos.forEach((v) => io.observe(v));
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          videos.forEach((v) => {
+            const r = v.getBoundingClientRect();
+            const inView = r.bottom > 0 && r.top < window.innerHeight;
+            if (inView) tryPlay(v);
+          });
+        }
+      });
+    })();
     function setHighContrast(on) {
       document.documentElement.classList.toggle('a11y-high-contrast', !!on);
       highContrastInput.checked = !!on;
