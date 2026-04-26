@@ -380,31 +380,31 @@
       width: 100%;
       pointer-events: none;
       opacity: 0;
-      color: rgba(255, 60, 110, 0.92);
+      color: rgba(180, 100, 255, 0.92);
       transform: translateX(0);
       clip-path: inset(0 0 100% 0);
       transition: opacity 0.05s linear;
     }
     .hero-scramble.glitching {
       text-shadow:
-        -1px 0 0 rgba(255, 60, 110, 0.7),
+        -1px 0 0 rgba(180, 100, 255, 0.7),
         1px 0 0 rgba(80, 220, 255, 0.7);
       animation: hero-glitch-shake 0.10s steps(2) infinite;
     }
     .hero-scramble.glitch-light {
       text-shadow:
-        -0.5px 0 0 rgba(255, 60, 110, 0.45),
+        -0.5px 0 0 rgba(180, 100, 255, 0.45),
         0.5px 0 0 rgba(80, 220, 255, 0.45);
     }
     .hero-scramble.glitch-medium {
       text-shadow:
-        -1.1px 0 0 rgba(255, 60, 110, 0.75),
+        -1.1px 0 0 rgba(180, 100, 255, 0.75),
         1.1px 0.5px 0 rgba(80, 220, 255, 0.75);
       animation: hero-glitch-shake 0.10s steps(2) infinite;
     }
     .hero-scramble.glitch-heavy {
       text-shadow:
-        -2.4px 0 0 rgba(255, 60, 110, 1),
+        -2.4px 0 0 rgba(180, 100, 255, 1),
         2.4px 0.5px 0 rgba(80, 220, 255, 1),
         0 -0.5px 0 rgba(255, 255, 255, 0.3);
       animation: hero-glitch-shake-heavy 0.08s steps(3) infinite;
@@ -2122,7 +2122,7 @@
         if (!pulsesStarted) return;
         const delay = firstPulse
           ? (850 + Math.random() * 300)
-          : (8000 + Math.random() * 10000);
+          : (4000 + Math.random() * 4000);
         firstPulse = false;
         pulseTimer = setTimeout(pulse, delay);
       }
