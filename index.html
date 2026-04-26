@@ -6,24 +6,24 @@
   <title>Rafa Bianck — Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="assets/star-icon.svg">
   <link rel="canonical" href="https://rafabianck.com/">
-  <meta name="description" content="Rafa Bianck — UI/UX & game designer, vibe coder and mecha pilot at Venn Studios. Sharp eyes. No apologies.">
+  <meta name="description" content="Rafa Bianck — Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
   <meta name="author" content="Rafa Bianck">
   <meta name="theme-color" content="#131314">
   <meta property="og:title" content="Rafa Bianck — Portfolio">
-  <meta property="og:description" content="UI/UX & game designer, vibe coder and mecha pilot at Venn Studios. Sharp eyes. No apologies.">
+  <meta property="og:description" content="Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Rafa Bianck">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://rafabianck.com/assets/og-image.jpg">
   <meta property="og:image:width" content="2178">
   <meta property="og:image:height" content="1552">
-  <meta property="og:image:alt" content="Rafa Bianck — UI/UX & game designer at Venn Studios">
+  <meta property="og:image:alt" content="Rafa Bianck — Product & game designer at Venn Studios">
   <meta property="og:url" content="https://rafabianck.com/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://rafabianck.com/assets/og-image.jpg">
-  <meta name="twitter:image:alt" content="Rafa Bianck — UI/UX & game designer at Venn Studios">
+  <meta name="twitter:image:alt" content="Rafa Bianck — Product & game designer at Venn Studios">
   <meta name="twitter:title" content="Rafa Bianck — Portfolio">
-  <meta name="twitter:description" content="UI/UX & game designer, vibe coder and mecha pilot at Venn Studios. Sharp eyes. No apologies.">
+  <meta name="twitter:description" content="Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -31,8 +31,8 @@
     "name": "Rafa Bianck",
     "url": "https://rafabianck.com/",
     "image": "https://rafabianck.com/assets/og-image.jpg",
-    "jobTitle": "UI/UX & Game Designer",
-    "description": "UI/UX & game designer, vibe coder and mecha pilot at Venn Studios. Sharp eyes. No apologies.",
+    "jobTitle": "Product & Game Designer",
+    "description": "Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.",
     "worksFor": {
       "@type": "Organization",
       "name": "Venn Studios",
@@ -359,6 +359,89 @@
       font-weight: 400;
     }
 
+    .hero-scramble {
+      display: inline-block;
+      position: relative;
+      color: var(--text-secondary);
+      transition: color 0.25s ease;
+      cursor: help;
+      will-change: transform, text-shadow, filter;
+    }
+    .hero-scramble:hover,
+    .hero-scramble:focus-visible {
+      color: var(--accent-mauve);
+      outline: none;
+    }
+    .hero-scramble::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      pointer-events: none;
+      opacity: 0;
+      color: rgba(255, 60, 110, 0.92);
+      transform: translateX(0);
+      clip-path: inset(0 0 100% 0);
+      transition: opacity 0.05s linear;
+    }
+    .hero-scramble.glitching {
+      text-shadow:
+        -1px 0 0 rgba(255, 60, 110, 0.7),
+        1px 0 0 rgba(80, 220, 255, 0.7);
+      animation: hero-glitch-shake 0.10s steps(2) infinite;
+    }
+    .hero-scramble.glitch-light {
+      text-shadow:
+        -0.5px 0 0 rgba(255, 60, 110, 0.45),
+        0.5px 0 0 rgba(80, 220, 255, 0.45);
+    }
+    .hero-scramble.glitch-medium {
+      text-shadow:
+        -1.1px 0 0 rgba(255, 60, 110, 0.75),
+        1.1px 0.5px 0 rgba(80, 220, 255, 0.75);
+      animation: hero-glitch-shake 0.10s steps(2) infinite;
+    }
+    .hero-scramble.glitch-heavy {
+      text-shadow:
+        -2.4px 0 0 rgba(255, 60, 110, 1),
+        2.4px 0.5px 0 rgba(80, 220, 255, 1),
+        0 -0.5px 0 rgba(255, 255, 255, 0.3);
+      animation: hero-glitch-shake-heavy 0.08s steps(3) infinite;
+    }
+    .hero-scramble.glitch-heavy::before {
+      opacity: 1;
+      clip-path: inset(38% 0 47% 0);
+      transform: translateX(3px);
+    }
+    .hero-scramble.glitch-flash {
+      filter: invert(1) brightness(1.4);
+      transform: scaleY(1.04);
+    }
+    @keyframes hero-glitch-shake {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(0.6px, -0.4px); }
+    }
+    @keyframes hero-glitch-shake-heavy {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-1.4px, 0.5px); }
+      50% { transform: translate(1.4px, -0.5px); }
+      75% { transform: translate(-0.7px, 0.7px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-scramble.glitching,
+      .hero-scramble.glitch-light,
+      .hero-scramble.glitch-medium,
+      .hero-scramble.glitch-heavy,
+      .hero-scramble.glitch-flash {
+        animation: none;
+        text-shadow: none;
+        filter: none;
+        transform: none;
+      }
+      .hero-scramble::before { display: none; }
+    }
+
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
@@ -482,6 +565,23 @@
       justify-content: center;
       overflow: hidden;
       position: relative;
+    }
+
+    .venn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 1px;
+      background: rgba(243, 243, 243, 0.12);
+      padding: 0;
+    }
+    .venn-grid > video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.5);
+      transform-origin: center;
     }
 
 
@@ -672,7 +772,6 @@
       border-radius: var(--radius-md);
       font-family: var(--font-mono);
       font-size: 18px;
-      margin-top: 32px;
       transition: background 0.2s;
     }
 
@@ -693,6 +792,28 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    /* ── Cats sitting on the contact button ── */
+    .contact-wrap {
+      display: inline-block;
+      position: relative;
+      margin-top: 32px;
+    }
+    .footer-cats {
+      position: absolute;
+      bottom: calc(100% - 1px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+      pointer-events: auto;
+      line-height: 0;
+    }
+    .footer-cats img {
+      display: block;
+      vertical-align: bottom;
     }
 
     .footer-logo {
@@ -721,14 +842,9 @@
       text-decoration: none;
     }
 
-    .footer-cats {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
     .footer-cats img {
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center bottom;
       opacity: 0.5;
       cursor: pointer;
       transition: opacity 0.3s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -747,7 +863,7 @@
     }
 
     .cat-pantu { width: 40px; height: 40px; }
-    .cat-sus { width: 32px; height: 32px; }
+    .cat-sus { width: 32px; height: 40px; }
     .cat-presun { width: 32px; height: 40px; }
 
     /* ── Loading Screen ── */
@@ -991,6 +1107,257 @@
       footer { padding: 40px 24px 48px; flex-direction: column; gap: 16px; }
       .back-to-top-wrap { text-align: center !important; }
     }
+
+    /* ── Nav controls (lang + a11y) ── */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: 24px;
+    }
+    .nav-control-btn {
+      background: none;
+      border: 1px solid rgba(243, 243, 243, 0.12);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1;
+    }
+    .nav-control-btn:hover,
+    .nav-control-btn:focus-visible {
+      color: var(--text-primary);
+      border-color: rgba(243, 243, 243, 0.3);
+      outline: none;
+    }
+    .nav-control-btn[aria-pressed="true"] {
+      color: var(--accent-mauve);
+      border-color: var(--accent-mauve);
+    }
+    .nav-control-btn .lang-active {
+      color: var(--accent-mauve);
+    }
+    .nav-control-btn .lang-sep {
+      opacity: 0.4;
+      margin: 0 2px;
+    }
+    .nav-control-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6;
+    }
+
+    /* ── A11y panel ── */
+    .a11y-panel {
+      position: fixed;
+      top: 70px;
+      right: 24px;
+      z-index: 200;
+      background: rgba(19, 19, 20, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(243, 243, 243, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      font-family: var(--font-mono);
+    }
+    .a11y-panel.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .a11y-panel h3 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 16px 0;
+    }
+    .a11y-group {
+      margin-bottom: 18px;
+    }
+    .a11y-group:last-child {
+      margin-bottom: 0;
+    }
+    .a11y-group-label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+    .a11y-segmented {
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(243, 243, 243, 0.12);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .a11y-segmented button {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 8px 4px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      border-right: 1px solid rgba(243, 243, 243, 0.08);
+    }
+    .a11y-segmented button:last-child {
+      border-right: none;
+    }
+    .a11y-segmented button:hover {
+      color: var(--text-primary);
+      background: rgba(243, 243, 243, 0.04);
+    }
+    .a11y-segmented button[aria-pressed="true"] {
+      color: var(--accent-mauve);
+      background: rgba(203, 166, 247, 0.08);
+    }
+    .a11y-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 6px 0;
+    }
+    .a11y-toggle span {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .a11y-toggle input {
+      appearance: none;
+      width: 36px;
+      height: 20px;
+      background: rgba(243, 243, 243, 0.12);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .a11y-toggle input::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: var(--text-secondary);
+      border-radius: 50%;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .a11y-toggle input:checked {
+      background: rgba(203, 166, 247, 0.3);
+    }
+    .a11y-toggle input:checked::before {
+      transform: translateX(16px);
+      background: var(--accent-mauve);
+    }
+    .a11y-reset {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      background: none;
+      border: 1px solid rgba(243, 243, 243, 0.12);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .a11y-reset:hover {
+      color: var(--text-primary);
+      border-color: rgba(243, 243, 243, 0.3);
+    }
+
+    /* ── A11y modes ── */
+    html.a11y-text-large { zoom: 1.15; }
+    html.a11y-text-xl { zoom: 1.32; }
+
+    html.a11y-reduce-motion *,
+    html.a11y-reduce-motion *::before,
+    html.a11y-reduce-motion *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    html.a11y-reduce-motion .hero-scramble::before { display: none !important; }
+    html.a11y-reduce-motion .hero-scramble.glitch-flash {
+      filter: none !important;
+      transform: none !important;
+    }
+
+    html.a11y-high-contrast {
+      --text-secondary: rgba(243, 243, 243, 0.92);
+      --text-muted: rgba(243, 243, 243, 0.7);
+      --accent-mauve: #e0c8ff;
+      --accent-blue: #a3b8f5;
+    }
+    html.a11y-high-contrast .role-card,
+    html.a11y-high-contrast .project-card,
+    html.a11y-high-contrast .event-card {
+      border-color: rgba(243, 243, 243, 0.3) !important;
+    }
+
+    @media (max-width: 768px) {
+      nav { justify-content: flex-start; }
+      .nav-logo { margin-right: auto; }
+      .nav-controls { gap: 8px; margin-left: 0; margin-right: 8px; }
+      .nav-control-btn { font-size: 12px; padding: 5px 8px; }
+      #lang-toggle { display: none; }
+      .a11y-panel { right: 12px; left: 12px; width: auto; top: 64px; }
+    }
+    .overlay-lang-toggle { display: none; }
+    @media (max-width: 768px) {
+      .overlay-lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: 1px solid rgba(243, 243, 243, 0.18);
+        color: var(--text-secondary);
+        font-family: var(--font-mono);
+        font-size: 16px;
+        letter-spacing: 1px;
+        padding: 10px 18px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 16px;
+        transition: color 0.2s, border-color 0.2s;
+      }
+      .overlay-lang-toggle:hover,
+      .overlay-lang-toggle:focus-visible {
+        color: var(--text-primary);
+        border-color: rgba(243, 243, 243, 0.4);
+        outline: none;
+      }
+      .overlay-lang-toggle .lang-active { color: var(--accent-mauve); }
+      .overlay-lang-toggle .lang-sep { opacity: 0.4; margin: 0 4px; }
+    }
     </style>
   <noscript><style>.loader{display:none!important}body.loading nav,body.loading .hero,body.loading .roles,body.loading .projects,body.loading .events,body.loading .contact,body.loading footer{opacity:1!important}</style></noscript>
 </head>
@@ -1018,20 +1385,58 @@
   <nav>
     <span class="nav-logo">Rafa Bianck</span>
     <ul class="nav-links">
-      <li><a href="#roles">Roles</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#roles" data-i18n="nav.roles">Roles</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#events" data-i18n="nav.events">Events</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <div class="nav-controls">
+      <button class="nav-control-btn" id="lang-toggle" type="button" aria-label="Toggle language" data-i18n-attr="aria-label:nav.langToggle">
+        <span class="lang-en lang-active">EN</span><span class="lang-sep">/</span><span class="lang-pt">PT</span>
+      </button>
+      <button class="nav-control-btn" id="a11y-toggle" type="button" aria-label="Accessibility options" aria-expanded="false" aria-controls="a11y-panel" data-i18n-attr="aria-label:nav.a11yToggle">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="4.5" r="1.9" fill="currentColor" stroke="none"></circle>
+          <path d="M5 9h14" stroke-linecap="round"></path>
+          <path d="M12 9v5" stroke-linecap="round"></path>
+          <path d="M12 14l-3 7.5" stroke-linecap="round"></path>
+          <path d="M12 14l3 7.5" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" data-i18n-attr="aria-label:nav.menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
   <div class="nav-overlay" id="nav-overlay" role="navigation" aria-label="Mobile navigation">
-    <a href="#roles">Roles</a>
-    <a href="#projects">Projects</a>
-    <a href="#events">Events</a>
-    <a href="#contact">Contact</a>
+    <a href="#roles" data-i18n="nav.roles">Roles</a>
+    <a href="#projects" data-i18n="nav.projects">Projects</a>
+    <a href="#events" data-i18n="nav.events">Events</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+    <button class="overlay-lang-toggle" id="lang-toggle-mobile" type="button" aria-label="Toggle language" data-i18n-attr="aria-label:nav.langToggle">
+      <span class="lang-en lang-active">EN</span><span class="lang-sep">/</span><span class="lang-pt">PT</span>
+    </button>
+  </div>
+
+  <div class="a11y-panel" id="a11y-panel" role="dialog" aria-labelledby="a11y-panel-title" aria-modal="false">
+    <h3 id="a11y-panel-title" data-i18n="a11y.title">Accessibility</h3>
+    <div class="a11y-group">
+      <span class="a11y-group-label" data-i18n="a11y.textSize">Text size</span>
+      <div class="a11y-segmented" role="group" aria-label="Text size">
+        <button type="button" data-text-size="default" aria-pressed="true">A</button>
+        <button type="button" data-text-size="large" aria-pressed="false">A+</button>
+        <button type="button" data-text-size="xl" aria-pressed="false">A++</button>
+      </div>
+    </div>
+    <label class="a11y-toggle">
+      <span data-i18n="a11y.reduceMotion">Reduced motion</span>
+      <input type="checkbox" id="a11y-reduce-motion">
+    </label>
+    <label class="a11y-toggle">
+      <span data-i18n="a11y.highContrast">Increased contrast</span>
+      <input type="checkbox" id="a11y-high-contrast">
+    </label>
+    <button class="a11y-reset" type="button" id="a11y-reset" data-i18n="a11y.reset">Reset</button>
   </div>
 
   <!-- Hero -->
@@ -1045,61 +1450,61 @@
     </div>
     <div class="hero-intro">
       <p class="hero-subtitle">
-        Sharp eyes. No apologies.<br>
-        UI/UX &amp; game designer, vibe coder and mecha pilot at <a href="https://venn-studios.com/" target="_blank" rel="noopener"><strong>Venn Studios</strong><span class="external-arrow">&#8599;&#xFE0E;</span></a>.
+        <span data-i18n="hero.tagline">Sharp eyes. No apologies.</span><br>
+        <span class="hero-scramble" tabindex="0" role="button" data-decode="Mecha pilot" aria-label="Product and game designer" data-i18n="hero.role" data-i18n-attr="aria-label:hero.roleAria,data-decode:hero.decode">Product &amp; game designer</span><span data-i18n="hero.connector">, vibe coder at </span><a href="https://venn-studios.com/" target="_blank" rel="noopener"><strong>Venn Studios</strong><span class="external-arrow">&#8599;&#xFE0E;</span></a><span>.</span>
       </p>
       <div class="hero-tags">
-        <span class="tag"><span class="slash">/</span> ui-ux</span>
-        <span class="tag"><span class="slash">/</span> game-design-analysis</span>
-        <span class="tag"><span class="slash">/</span> player-research</span>
-        <span class="tag"><span class="slash">/</span> concept-art</span>
-        <span class="tag"><span class="slash">/</span> vibe-coding</span>
-        <span class="tag"><span class="slash">/</span> research-strategy</span>
-        <span class="tag"><span class="slash">/</span> comms-docs</span>
-        <span class="tag"><span class="slash">/</span> tooling</span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.uiux">ui-ux</span></span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.gameDesign">game-design-analysis</span></span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.playerResearch">player-research</span></span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.conceptArt">concept-art</span></span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.vibeCoding">vibe-coding</span></span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.researchStrategy">research-strategy</span></span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.commsDocs">comms-docs</span></span>
+        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.tooling">tooling</span></span>
       </div>
     </div>
   </section>
 
   <!-- Roles -->
   <section class="roles" id="roles">
-    <p class="section-label">// what I do</p>
-    <h2 class="section-title">Roles</h2>
+    <p class="section-label" data-i18n="roles.label">// what I do</p>
+    <h2 class="section-title" data-i18n="roles.title">Roles</h2>
     <div class="roles-grid">
       <div class="role-card fade-in">
-        <h3>UI/UX Designer</h3>
-        <p class="role-context">Game HUD &middot; Menus &middot; Web &middot; Standards</p>
-        <p>Responsible for the entire digital experience across the studio — Venn Studios' website, Rogue Reigns' and Paradoxical's web presence. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Authored card descriptions, mechanics, names, and functionality. Wrote the studio-wide UI/UX guidelines and document design standards.</p>
+        <h3 data-i18n="roles.uiux.title">UI/UX Designer</h3>
+        <p class="role-context" data-i18n="roles.uiux.context">Game HUD &middot; Menus &middot; Web &middot; Standards</p>
+        <p data-i18n="roles.uiux.body">Responsible for the entire digital experience across the studio — Venn Studios' website, Rogue Reigns' and Paradoxical's web presence. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Wrote the studio-wide UI/UX guidelines and document design standards.</p>
       </div>
       <div class="role-card fade-in">
-        <h3>Game Design Analysis</h3>
-        <p class="role-context">Systems &middot; Balance &middot; Narrative architecture</p>
-        <p>Full critical analysis of Rogue Reigns' card system across all player classes. Documented leading deckbuilder and narrative-driven games as design references. Performed lore consistency audits across the project.</p>
+        <h3 data-i18n="roles.gamedesign.title">Game Design &amp; Analysis</h3>
+        <p class="role-context" data-i18n="roles.gamedesign.context">Systems &middot; Balance &middot; Narrative architecture</p>
+        <p data-i18n="roles.gamedesign.body">Authored card descriptions, mechanics, names, and functionality for Rogue Reigns. Full critical analysis of the card system across all player classes. Documented leading deckbuilder and narrative-driven games as design references. Performed lore consistency audits across the project.</p>
       </div>
       <div class="role-card fade-in">
-        <h3>Player Research</h3>
-        <p class="role-context">Conventions &middot; Observation &middot; Analysis</p>
-        <p>On the floor at GDC, TGS, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what people do (not just what they say), and translating those insights into actionable changes for the team.</p>
+        <h3 data-i18n="roles.research.title">Player Research</h3>
+        <p class="role-context" data-i18n="roles.research.context">Conventions &middot; Observation &middot; Analysis</p>
+        <p data-i18n="roles.research.body">On the floor at GDC, TGS, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what people do (not just what they say), and translating those insights into actionable changes for the team.</p>
       </div>
       <div class="role-card fade-in">
-        <h3>Concept Artist</h3>
-        <p class="role-context">HUD elements &middot; Game assets</p>
-        <p>Creating visual assets for Rogue Reigns — HUD elements, UI artwork, and standalone pieces. Bridging the gap between design intent and in-game visuals.</p>
+        <h3 data-i18n="roles.concept.title">Concept Artist</h3>
+        <p class="role-context" data-i18n="roles.concept.context">HUD elements &middot; Game assets</p>
+        <p data-i18n="roles.concept.body">Creating visual assets for Rogue Reigns — HUD elements, UI artwork, and standalone pieces. Bridging the gap between design intent and in-game visuals.</p>
       </div>
       <div class="role-card fade-in">
-        <h3>Vibe Coder &amp; Tooling</h3>
-        <p class="role-context">Python &middot; JS &middot; Playwright &middot; Claude Code</p>
-        <p>Built the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.</p>
+        <h3 data-i18n="roles.vibe.title">Vibe Coder &amp; Tooling</h3>
+        <p class="role-context" data-i18n="roles.vibe.context">Python &middot; JS &middot; Playwright &middot; Claude Code</p>
+        <p data-i18n="roles.vibe.body">Built the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.</p>
       </div>
       <div class="role-card fade-in">
-        <h3>Research &amp; Strategy</h3>
-        <p class="role-context">ROI &middot; Market &middot; Platform submissions &middot; Go-to-market</p>
-        <p>Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research.</p>
+        <h3 data-i18n="roles.strategy.title">Research &amp; Strategy</h3>
+        <p class="role-context" data-i18n="roles.strategy.context">ROI &middot; Market &middot; Platform submissions &middot; Go-to-market</p>
+        <p data-i18n="roles.strategy.body">Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research.</p>
       </div>
       <div class="role-card fade-in">
-        <h3>Communications &amp; Documentation</h3>
-        <p class="role-context">Press releases &middot; Guides &middot; Reports</p>
-        <p>Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organized mentorship program notes and maintained executive-level project reporting. Defined the studio's document design standards.</p>
+        <h3 data-i18n="roles.comms.title">Communications &amp; Documentation</h3>
+        <p class="role-context" data-i18n="roles.comms.context">Press releases &middot; Guides &middot; Reports</p>
+        <p data-i18n="roles.comms.body">Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organized mentorship program notes and maintained executive-level project reporting. Defined the studio's document design standards.</p>
       </div>
     </div>
   </section>
@@ -1108,96 +1513,125 @@
 
   <!-- Projects -->
   <section class="projects" id="projects">
-    <p class="section-label">// what I've built</p>
-    <h2 class="section-title">Projects</h2>
+    <p class="section-label" data-i18n="projects.label">// what I've built</p>
+    <h2 class="section-title" data-i18n="projects.title">Projects</h2>
 
     <div class="project">
       <div class="project-visual">
-        <img src="assets/rogue-reigns.jpg" alt="Rogue Reigns gameplay screenshot" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="assets/rogue-reigns.jpg" alt="Rogue Reigns gameplay screenshot" data-i18n-attr="alt:projects.rogue.alt" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <div class="project-info">
         <h3><a href="https://store.steampowered.com/app/3942630/Rogue_Reigns/" target="_blank" rel="noopener">Rogue Reigns<span class="external-arrow">&#8599;&#xFE0E;</span></a></h3>
-        <p class="project-meta">Dark fantasy roguelike deckbuilder &middot; 2026</p>
-        <p>Venn Studios' flagship title. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Wrote card descriptions, mechanics, names, and functionality. Contributed to mechanics reconstruction and lore development. Conducted a full critical analysis of the card system across all player classes, referencing leading deckbuilder and narrative-action titles. Provided art feedback for both the digital and physical game. Led player research at every convention.</p>
+        <p class="project-meta" data-i18n="projects.rogue.meta">Dark fantasy roguelike deckbuilder &middot; 2026</p>
+        <p data-i18n="projects.rogue.body">Venn Studios' flagship title. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Wrote card descriptions, mechanics, names, and functionality. Contributed to mechanics reconstruction and lore development. Conducted a full critical analysis of the card system across all player classes, referencing leading deckbuilder and narrative-action titles. Provided art feedback for both the digital and physical game. Led player research at every convention.</p>
         <div class="project-contributions">
-          <span class="tag">HUD Design</span>
-          <span class="tag">Menu Prototype</span>
-          <span class="tag">Card Content</span>
-          <span class="tag">Mechanics</span>
-          <span class="tag">Game Design Analysis</span>
-          <span class="tag">Lore</span>
-          <span class="tag">Art Feedback</span>
-          <span class="tag">Player Research</span>
-          <span class="tag">Concept Art</span>
-          <span class="tag">Steam Page</span>
+          <span class="tag" data-i18n="tags.hudDesign">HUD Design</span>
+          <span class="tag" data-i18n="tags.menuPrototype">Menu Prototype</span>
+          <span class="tag" data-i18n="tags.cardContent">Card Content</span>
+          <span class="tag" data-i18n="tags.mechanics">Mechanics</span>
+          <span class="tag" data-i18n="tags.gameDesignAnalysis">Game Design &amp; Analysis</span>
+          <span class="tag" data-i18n="tags.lore">Lore</span>
+          <span class="tag" data-i18n="tags.artFeedback">Art Feedback</span>
+          <span class="tag" data-i18n="tags.playerResearch">Player Research</span>
+          <span class="tag" data-i18n="tags.conceptArt">Concept Art</span>
+          <span class="tag" data-i18n="tags.steamPage">Steam Page</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-visual venn-grid" role="img" aria-label="Venn Studios logo motion intro — four brand variants" data-i18n-attr="aria-label:projects.venn.alt">
+        <video class="project-video" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="assets/venn-logo-intro-dark.webm" type="video/webm">
+        </video>
+        <video class="project-video" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="assets/venn-logo-intro-allblack.webm" type="video/webm">
+        </video>
+        <video class="project-video" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="assets/venn-logo-intro-white.webm" type="video/webm">
+        </video>
+        <video class="project-video" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
+          <source src="assets/venn-logo-intro-allwhite.webm" type="video/webm">
+        </video>
+      </div>
+      <div class="project-info">
+        <h3><a href="https://venn-studios.com/" target="_blank" rel="noopener">Venn Studios<span class="external-arrow">&#8599;&#xFE0E;</span></a></h3>
+        <p class="project-meta" data-i18n="projects.venn.meta">Brand identity &middot; Motion intro &middot; 2026</p>
+        <p data-i18n="projects.venn.body">Venn Studios brand redesign. Built from the original logo's intent, pushed into modern, timeless territory — Venn isn't just a games studio, it also produces technology, and the identity had to carry both. Full system: logo, typography, palette, and motion intro.</p>
+        <div class="project-contributions">
+          <span class="tag" data-i18n="tags.logo">Logo</span>
+          <span class="tag" data-i18n="tags.typography">Typography</span>
+          <span class="tag" data-i18n="tags.palette">Palette</span>
+          <span class="tag" data-i18n="tags.motion">Motion</span>
+          <span class="tag" data-i18n="tags.brandSystem">Brand System</span>
         </div>
       </div>
     </div>
 
     <div class="project">
       <div class="project-visual">
-        <img src="assets/paradoxical.jpg" alt="Paradoxical key art" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="assets/paradoxical.jpg" alt="Paradoxical key art" data-i18n-attr="alt:projects.paradoxical.alt" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <div class="project-info">
         <h3><a href="https://store.steampowered.com/app/4040750/Paradoxical/" target="_blank" rel="noopener">Paradoxical<span class="external-arrow">&#8599;&#xFE0E;</span></a></h3>
-        <p class="project-meta">Perception-bending puzzle game &middot; Unity &middot; 2027</p>
-        <p>Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across TGS, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.</p>
+        <p class="project-meta" data-i18n="projects.paradoxical.meta">Perception-bending puzzle game &middot; Unity &middot; 2027</p>
+        <p data-i18n="projects.paradoxical.body">Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across TGS, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.</p>
         <div class="project-contributions">
-          <span class="tag">Player Research</span>
-          <span class="tag">Feedback Analysis</span>
-          <span class="tag">Steam Page</span>
+          <span class="tag" data-i18n="tags.playerResearch">Player Research</span>
+          <span class="tag" data-i18n="tags.feedbackAnalysis">Feedback Analysis</span>
+          <span class="tag" data-i18n="tags.steamPage">Steam Page</span>
         </div>
       </div>
     </div>
 
     <div class="secondary-projects">
       <div class="secondary-projects-header">
-        <span class="secondary-projects-label">// also built</span>
+        <span class="secondary-projects-label" data-i18n="projects.secondaryLabel">// also built</span>
         <hr class="secondary-projects-rule">
       </div>
       <div class="secondary-projects-grid">
         <div class="project-card fade-in">
-          <h3>Studio Tooling</h3>
-          <p class="project-meta">Internal tools &middot; Python &middot; Node.js</p>
-          <p>Built the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.</p>
+          <h3 data-i18n="projects.tooling.title">Studio Tooling</h3>
+          <p class="project-meta" data-i18n="projects.tooling.meta">Internal tools &middot; Python &middot; Node.js</p>
+          <p data-i18n="projects.tooling.body">Built the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.</p>
           <div class="project-contributions">
             <span class="tag">Python</span>
             <span class="tag">Node.js</span>
             <span class="tag">Playwright</span>
-            <span class="tag">Automation</span>
+            <span class="tag" data-i18n="tags.automation">Automation</span>
           </div>
         </div>
         <div class="project-card fade-in">
-          <h3>Venn Chat</h3>
-          <p class="project-meta">Internal work hub &middot; Knowledge management</p>
-          <p>Contributed to the design of Venn's custom internal platform. Independently designed a knowledge-management system for tracking narrative and gameplay relationships — with relationship mapping, visual graph navigation, and AI-assisted organization (AI helps manage content, not create it). Built to scale across complex game worlds with hundreds of interconnected entries.</p>
+          <h3 data-i18n="projects.vennChat.title">Venn Chat</h3>
+          <p class="project-meta" data-i18n="projects.vennChat.meta">Internal work hub &middot; Knowledge management</p>
+          <p data-i18n="projects.vennChat.body">Contributed to the design of Venn's custom internal platform. Independently designed a knowledge-management system for tracking narrative and gameplay relationships — with relationship mapping, visual graph navigation, and AI-assisted organization (AI helps manage content, not create it). Built to scale across complex game worlds with hundreds of interconnected entries.</p>
           <div class="project-contributions">
-            <span class="tag">Knowledge System Design</span>
-            <span class="tag">Feature Spec</span>
-            <span class="tag">MVP Spec</span>
-            <span class="tag">UI (upcoming)</span>
+            <span class="tag" data-i18n="tags.knowledgeSystem">Knowledge System Design</span>
+            <span class="tag" data-i18n="tags.featureSpec">Feature Spec</span>
+            <span class="tag" data-i18n="tags.mvpSpec">MVP Spec</span>
+            <span class="tag" data-i18n="tags.uiUpcoming">UI (upcoming)</span>
           </div>
         </div>
         <div class="project-card fade-in">
-          <h3>Documentation &amp; Comms</h3>
-          <p class="project-meta">Press releases &middot; Guides &middot; Standards</p>
-          <p>Press releases for both games across multiple events. Internal event preparation guides and team documentation. Mentorship program notes organized for the team. Executive-level project reporting. Studio-wide UI/UX design guidelines (WCAG, typography, spacing, animation) and document design standards.</p>
+          <h3 data-i18n="projects.docs.title">Documentation &amp; Comms</h3>
+          <p class="project-meta" data-i18n="projects.docs.meta">Press releases &middot; Guides &middot; Standards</p>
+          <p data-i18n="projects.docs.body">Press releases for both games across multiple events. Internal event preparation guides and team documentation. Mentorship program notes organized for the team. Executive-level project reporting. Studio-wide UI/UX design guidelines (WCAG, typography, spacing, animation) and document design standards.</p>
           <div class="project-contributions">
-            <span class="tag">Press Releases</span>
-            <span class="tag">Event Guides</span>
-            <span class="tag">UI/UX Guidelines</span>
-            <span class="tag">Design Standards</span>
+            <span class="tag" data-i18n="tags.pressReleases">Press Releases</span>
+            <span class="tag" data-i18n="tags.eventGuides">Event Guides</span>
+            <span class="tag" data-i18n="tags.uiuxGuidelines">UI/UX Guidelines</span>
+            <span class="tag" data-i18n="tags.designStandards">Design Standards</span>
           </div>
         </div>
         <div class="project-card fade-in">
-          <h3>Research &amp; Strategy</h3>
-          <p class="project-meta">ROI &middot; Market analysis &middot; Platform submissions &middot; Go-to-market</p>
-          <p>Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research for international studios.</p>
+          <h3 data-i18n="projects.researchStrategy.title">Research &amp; Strategy</h3>
+          <p class="project-meta" data-i18n="projects.researchStrategy.meta">ROI &middot; Market analysis &middot; Platform submissions &middot; Go-to-market</p>
+          <p data-i18n="projects.researchStrategy.body">Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research for international studios.</p>
           <div class="project-contributions">
-            <span class="tag">Convention ROI</span>
-            <span class="tag">Platform Submissions</span>
-            <span class="tag">Go-to-market Strategy</span>
-            <span class="tag">Competitive Analysis</span>
+            <span class="tag" data-i18n="tags.conventionROI">Convention ROI</span>
+            <span class="tag" data-i18n="tags.platformSubmissions">Platform Submissions</span>
+            <span class="tag" data-i18n="tags.gtmStrategy">Go-to-market Strategy</span>
+            <span class="tag" data-i18n="tags.competitiveAnalysis">Competitive Analysis</span>
           </div>
         </div>
       </div>
@@ -1208,38 +1642,38 @@
 
   <!-- Events -->
   <section class="events" id="events">
-    <p class="section-label">// where I've been</p>
-    <h2 class="section-title">Events</h2>
+    <p class="section-label" data-i18n="events.label">// where I've been</p>
+    <h2 class="section-title" data-i18n="events.title">Events</h2>
     <div class="events-list">
       <div class="event-card fade-in">
         <h4>Tokyo Game Show</h4>
-        <p class="event-year">Sep 2025</p>
-        <p>First international showcase. Focused on Rogue Reigns — observed how Japanese players approached the deckbuilder differently from Western playtests.</p>
+        <p class="event-year" data-i18n="events.tgs.year">Sep 2025</p>
+        <p data-i18n="events.tgs.body">First international showcase. Focused on Rogue Reigns — observed how Japanese players approached the deckbuilder differently from Western playtests.</p>
       </div>
       <div class="event-card fade-in">
         <h4>BCN Game Fest</h4>
-        <p class="event-year">Oct 2025</p>
-        <p>Barcelona. Solo exhibitor — represented both Rogue Reigns and Paradoxical alone. Tracked what confused players vs. what they said confused them — often different things.</p>
+        <p class="event-year" data-i18n="events.bcn.year">Oct 2025</p>
+        <p data-i18n="events.bcn.body">Barcelona. Solo exhibitor — represented both Rogue Reigns and Paradoxical alone. Tracked what confused players vs. what they said confused them — often different things.</p>
       </div>
       <div class="event-card fade-in">
         <h4>Paris Games Week</h4>
-        <p class="event-year">Oct 2025</p>
-        <p>Paris. Attended as a scout — evaluating whether the event would be worth exhibiting at, documenting ideas and observations for the team.</p>
+        <p class="event-year" data-i18n="events.paris.year">Oct 2025</p>
+        <p data-i18n="events.paris.body">Paris. Attended as a scout — evaluating whether the event would be worth exhibiting at, documenting ideas and observations for the team.</p>
       </div>
       <div class="event-card fade-in">
         <h4>Milan Games Week</h4>
-        <p class="event-year">Nov 2025</p>
-        <p>Responsible for Rogue Reigns across both versions. Mastered the physical card game for players and collected feedback. Presented the digital version, observed gameplay, and gathered insights.</p>
+        <p class="event-year" data-i18n="events.milan.year">Nov 2025</p>
+        <p data-i18n="events.milan.body">Responsible for Rogue Reigns across both versions. Mastered the physical card game for players and collected feedback. Presented the digital version, observed gameplay, and gathered insights.</p>
       </div>
       <div class="event-card fade-in">
         <h4>GDC</h4>
-        <p class="event-year">Mar 2026</p>
-        <p>San Francisco. Collected player feedback for both Rogue Reigns and Paradoxical — observations directly shaped design iterations for both games.</p>
+        <p class="event-year" data-i18n="events.gdc.year">Mar 2026</p>
+        <p data-i18n="events.gdc.body">San Francisco. Collected player feedback for both Rogue Reigns and Paradoxical — observations directly shaped design iterations for both games.</p>
       </div>
       <div class="event-card fade-in">
         <h4>Gamescom LATAM</h4>
-        <p class="event-year">Apr 2026</p>
-        <p>Latin American market. Venn's home turf — evaluating regional reception and gathering feedback from the local player base.</p>
+        <p class="event-year" data-i18n="events.gamescom.year">Apr 2026</p>
+        <p data-i18n="events.gamescom.body">Latin American market. Venn's home turf — evaluating regional reception and gathering feedback from the local player base.</p>
       </div>
     </div>
   </section>
@@ -1248,26 +1682,26 @@
 
   <!-- Contact -->
   <section class="contact" id="contact">
-    <p class="section-label">// say hi</p>
-    <h2 class="section-title">Contact</h2>
-    <a class="contact-prompt" href="mailto:rafabianck@venn-studios.com">
-      <span class="caret" style="color: var(--accent-mauve);">&gt;</span>
-      <span>rafabianck@venn-studios.com</span>
-    </a>
+    <p class="section-label" data-i18n="contact.label">// say hi</p>
+    <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+    <div class="contact-wrap">
+      <div class="footer-cats" aria-hidden="true">
+        <img class="cat-pantu" src="assets/pantu.png" alt="Pantu, the cat" data-i18n-attr="alt:footer.catPantu">
+        <img class="cat-sus" src="assets/sus.png" alt="Sus, the cat" data-i18n-attr="alt:footer.catSus">
+        <img class="cat-presun" src="assets/presun.png" alt="Presun, the cat" data-i18n-attr="alt:footer.catPresun">
+      </div>
+      <a class="contact-prompt" href="mailto:rafabianck@venn-studios.com">
+        <span class="caret" style="color: var(--accent-mauve);">&gt;</span>
+        <span>rafabianck@venn-studios.com</span>
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <span class="footer-logo">Rafa Bianck &middot; Venn Studios</span>
-    <div class="footer-cats">
-      <img class="cat-pantu" src="assets/pantu.png" alt="Pantu">
-      <img class="cat-sus" src="assets/sus.png" alt="Sus">
-      <img class="cat-presun" src="assets/presun.png" alt="Presun">
-    </div>
+    <a href="#hero" class="back-to-top" data-i18n-html="footer.backToTop">Back to top &#8593;&#xFE0E;</a>
   </footer>
-  <div class="back-to-top-wrap" style="max-width: 1080px; margin: 0 auto; padding: 0 40px 48px; margin-top: -32px; text-align: right; position: relative; z-index: 1;">
-    <a href="#hero" class="back-to-top">Back to top &#8593;&#xFE0E;</a>
-  </div>
 
   <script>
     // ── Scroll to top ──
@@ -1408,7 +1842,15 @@
       function revealPage() {
         window._stopScrollForce();
         document.body.classList.remove('loading');
-        setTimeout(() => loader.classList.add('gone'), 600);
+        setTimeout(() => {
+          loader.classList.add('gone');
+          // Loader fade-out is 500ms (see .loader transition); fire ready
+          // event only after it's visually gone so post-load animations
+          // (like the hero glitch pulse) don't overlap the fake loading.
+          setTimeout(() => {
+            document.dispatchEvent(new CustomEvent('site:ready'));
+          }, 550);
+        }, 600);
       }
     });
 
@@ -1509,6 +1951,674 @@
       }
       animate();
     })();
+
+    // ── Hero scramble + glitch (decoding easter egg) ──
+    (() => {
+      const el = document.querySelector('.hero-scramble');
+      if (!el) return;
+
+      let original = el.textContent;
+      let decoded = el.dataset.decode || '';
+      const DECODE_GLYPHS = '!<>-_\\/[]{}=+*^?#·•◇◆▮▯⌬◈≠≈';
+      const STATIC_GLYPHS = '▓▒░█▄▀■□·';
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouch = window.matchMedia('(hover: none)').matches;
+      el.dataset.text = original;
+      function setText(s) {
+        el.textContent = s;
+        el.dataset.text = s;
+      }
+
+      let frame = 0;
+      let frameId = 0;
+      let queue = [];
+      let isDecoded = false;
+      let pulseTimer = 0;
+      let pulseStep = 0;
+      let revertTimer = 0;
+
+      const PULSE_CLASSES = ['glitch-light', 'glitch-medium', 'glitch-heavy', 'glitch-flash'];
+      // TV-tuning sequence — trends toward resolution: heavy bursts up front,
+      // a flash mid-way, then medium → light settle.
+      const TV_BURST = [
+        { dur: 280, intensity: 'heavy',  count: 6 },
+        { dur: 60,  intensity: null,     count: 0 },
+        { dur: 180, intensity: 'heavy',  count: 5 },
+        { dur: 140, intensity: 'medium', count: 3 },
+        { dur: 90,  intensity: null,     count: 0 },
+        { dur: 50,  intensity: 'flash',  count: 0 },
+        { dur: 70,  intensity: 'heavy',  count: 4 },
+        { dur: 220, intensity: 'medium', count: 2 },
+        { dur: 160, intensity: 'light',  count: 1 },
+        { dur: 60,  intensity: null,     count: 0 }
+      ];
+
+      function clearPulseClasses() {
+        PULSE_CLASSES.forEach((c) => el.classList.remove(c));
+      }
+
+      function pickGlyph(pool) {
+        return pool[Math.floor(Math.random() * pool.length)];
+      }
+
+      function scramble(target) {
+        cancelAnimationFrame(frameId);
+        el.classList.add('glitching');
+        const current = el.textContent;
+        const length = Math.max(current.length, target.length);
+        queue = [];
+        for (let i = 0; i < length; i++) {
+          queue.push({
+            from: current[i] || '',
+            to: target[i] || '',
+            start: Math.floor(Math.random() * 20),
+            end: Math.floor(Math.random() * 22) + 22,
+            char: ''
+          });
+        }
+        frame = 0;
+        tick();
+      }
+
+      function tick() {
+        let out = '';
+        let done = 0;
+        for (let i = 0; i < queue.length; i++) {
+          const q = queue[i];
+          if (frame >= q.end) {
+            done++;
+            out += q.to;
+          } else if (frame >= q.start) {
+            if (!q.char || Math.random() < 0.28) {
+              q.char = pickGlyph(DECODE_GLYPHS);
+            }
+            out += q.char;
+          } else {
+            out += q.from;
+          }
+        }
+        setText(out);
+        if (done < queue.length) {
+          frame++;
+          frameId = requestAnimationFrame(tick);
+        } else {
+          el.classList.remove('glitching');
+        }
+      }
+
+      function decode() {
+        clearTimeout(pulseTimer);
+        clearTimeout(revertTimer);
+        clearPulseClasses();
+        if (reduceMotion) {
+          setText(decoded);
+        } else {
+          scramble(decoded);
+        }
+        isDecoded = true;
+      }
+
+      function encode() {
+        if (reduceMotion) {
+          setText(original);
+        } else {
+          scramble(original);
+        }
+        isDecoded = false;
+        schedulePulse();
+      }
+
+      // TV-tuning glitch: multi-step burst — heavy static up front trends
+      // toward resolution; a brief invert flash punctuates the middle.
+      function runPulseStep() {
+        if (isDecoded) return;
+        if (pulseStep >= TV_BURST.length) {
+          clearPulseClasses();
+          setText(original);
+          schedulePulse();
+          return;
+        }
+        const step = TV_BURST[pulseStep++];
+        clearPulseClasses();
+        if (step.intensity) el.classList.add('glitch-' + step.intensity);
+        if (step.count > 0) {
+          const chars = original.split('');
+          const used = new Set();
+          let attempts = 0;
+          while (used.size < step.count && attempts < 50) {
+            attempts++;
+            const i = Math.floor(Math.random() * chars.length);
+            if (used.has(i) || chars[i] === ' ') continue;
+            used.add(i);
+            chars[i] = pickGlyph(STATIC_GLYPHS);
+          }
+          setText(chars.join(''));
+        } else {
+          setText(original);
+        }
+        pulseTimer = setTimeout(runPulseStep, step.dur);
+      }
+
+      function pulse() {
+        if (isDecoded || reduceMotion) return;
+        if (document.visibilityState !== 'visible') {
+          schedulePulse();
+          return;
+        }
+        pulseStep = 0;
+        runPulseStep();
+      }
+
+      let firstPulse = true;
+      function schedulePulse() {
+        clearTimeout(pulseTimer);
+        if (reduceMotion) return;
+        // Gate: don't schedule pulses until the loader finishes — otherwise
+        // events that fire during page init (initial lang:changed, etc.)
+        // would kick off the first pulse during the fake-loading screen.
+        if (!pulsesStarted) return;
+        const delay = firstPulse
+          ? (850 + Math.random() * 300)
+          : (8000 + Math.random() * 10000);
+        firstPulse = false;
+        pulseTimer = setTimeout(pulse, delay);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && !isDecoded) {
+          schedulePulse();
+        } else {
+          clearTimeout(pulseTimer);
+        }
+      });
+
+      // Re-sync after language change: i18n already updated text + data-decode,
+      // we just refresh internal references and reset transient state.
+      document.addEventListener('lang:changed', () => {
+        cancelAnimationFrame(frameId);
+        clearTimeout(pulseTimer);
+        clearTimeout(revertTimer);
+        clearPulseClasses();
+        el.classList.remove('glitching');
+        original = el.textContent;
+        decoded = el.dataset.decode || '';
+        setText(original);
+        isDecoded = false;
+        if (cachedRect) cachedRect = el.getBoundingClientRect();
+        schedulePulse();
+      });
+
+      // ─── Hover detection via cached rect (survives text shrink/grow) ───
+      let cachedRect = null;
+      function measureRect() {
+        if (!isDecoded) cachedRect = el.getBoundingClientRect();
+      }
+
+      if (isTouch) {
+        el.addEventListener('click', () => {
+          clearTimeout(revertTimer);
+          if (isDecoded) {
+            encode();
+          } else {
+            decode();
+            revertTimer = setTimeout(encode, 2500);
+          }
+        });
+      } else {
+        let inside = false;
+        let mx = 0, my = 0;
+        let mmScheduled = false;
+
+        function processMove() {
+          mmScheduled = false;
+          if (!cachedRect) return;
+          const nowInside =
+            mx >= cachedRect.left && mx <= cachedRect.right &&
+            my >= cachedRect.top && my <= cachedRect.bottom;
+          if (nowInside !== inside) {
+            inside = nowInside;
+            if (inside) decode();
+            else encode();
+          }
+        }
+
+        document.addEventListener('mousemove', (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          if (!mmScheduled) {
+            mmScheduled = true;
+            requestAnimationFrame(processMove);
+          }
+        });
+
+        window.addEventListener('resize', measureRect);
+        window.addEventListener('scroll', measureRect, { passive: true });
+
+        el.addEventListener('focus', decode);
+        el.addEventListener('blur', encode);
+
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(measureRect);
+        } else {
+          setTimeout(measureRect, 100);
+        }
+      }
+
+      // Wait for the 'site:ready' event (fired by the loader script after
+      // the fake-loading screen has fully faded out) before firing the first
+      // glitch pulse, so the cue doesn't compete with the loader animation.
+      let pulsesStarted = false;
+      function startPulses() {
+        if (pulsesStarted) return;
+        pulsesStarted = true;
+        schedulePulse();
+      }
+      document.addEventListener('site:ready', startPulses, { once: true });
+      // Fallback: if the loader script ever fails to run (e.g. JS error),
+      // start pulses on a generous timeout so the page never sits silent.
+      setTimeout(() => { if (!pulsesStarted) startPulses(); }, 8000);
+    })();
+
+    // ─── i18n ───────────────────────────────────────────────────────
+    const TRANSLATIONS = {
+      en: {
+        'nav.roles': 'Roles',
+        'nav.projects': 'Projects',
+        'nav.events': 'Events',
+        'nav.contact': 'Contact',
+        'nav.menu': 'Menu',
+        'nav.langToggle': 'Toggle language',
+        'nav.a11yToggle': 'Accessibility options',
+
+        'hero.tagline': 'Sharp eyes. No apologies.',
+        'hero.role': 'Product & game designer',
+        'hero.roleAria': 'Product and game designer',
+        'hero.connector': ', vibe coder at ',
+        'hero.decode': 'Mecha pilot',
+
+        'roles.label': '// what I do',
+        'roles.title': 'Roles',
+        'roles.uiux.title': 'UI/UX Designer',
+        'roles.uiux.context': 'Game HUD · Menus · Web · Standards',
+        'roles.uiux.body': "Responsible for the entire digital experience across the studio — Venn Studios' website, Rogue Reigns' and Paradoxical's web presence. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Wrote the studio-wide UI/UX guidelines and document design standards.",
+        'roles.gamedesign.title': 'Game Design & Analysis',
+        'roles.gamedesign.context': 'Systems · Balance · Narrative architecture',
+        'roles.gamedesign.body': 'Authored card descriptions, mechanics, names, and functionality for Rogue Reigns. Full critical analysis of the card system across all player classes. Documented leading deckbuilder and narrative-driven games as design references. Performed lore consistency audits across the project.',
+        'roles.research.title': 'Player Research',
+        'roles.research.context': 'Conventions · Observation · Analysis',
+        'roles.research.body': 'On the floor at GDC, TGS, BCN Game Fest, Milan Games Week, and Gamescom LATAM — collecting feedback, observing what people do (not just what they say), and translating those insights into actionable changes for the team.',
+        'roles.concept.title': 'Concept Artist',
+        'roles.concept.context': 'HUD elements · Game assets',
+        'roles.concept.body': 'Creating visual assets for Rogue Reigns — HUD elements, UI artwork, and standalone pieces. Bridging the gap between design intent and in-game visuals.',
+        'roles.vibe.title': 'Vibe Coder & Tooling',
+        'roles.vibe.context': 'Python · JS · Playwright · Claude Code',
+        'roles.vibe.body': "Built the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.",
+        'roles.strategy.title': 'Research & Strategy',
+        'roles.strategy.context': 'ROI · Market · Platform submissions · Go-to-market',
+        'roles.strategy.body': 'Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research.',
+        'roles.comms.title': 'Communications & Documentation',
+        'roles.comms.context': 'Press releases · Guides · Reports',
+        'roles.comms.body': "Wrote press releases for both games across multiple events. Created internal event preparation guides and team documentation. Organized mentorship program notes and maintained executive-level project reporting. Defined the studio's document design standards.",
+
+        'projects.label': "// what I've built",
+        'projects.title': 'Projects',
+        'projects.secondaryLabel': '// also built',
+        'projects.rogue.alt': 'Rogue Reigns gameplay screenshot',
+        'projects.rogue.meta': 'Dark fantasy roguelike deckbuilder · 2026',
+        'projects.rogue.body': "Venn Studios' flagship title. Designed the in-game HUD and prototyped the main menu with custom physics interactions. Wrote card descriptions, mechanics, names, and functionality. Contributed to mechanics reconstruction and lore development. Conducted a full critical analysis of the card system across all player classes, referencing leading deckbuilder and narrative-action titles. Provided art feedback for both the digital and physical game. Led player research at every convention.",
+        'projects.venn.alt': 'Venn Studios logo intro animation',
+        'projects.venn.meta': 'Brand identity · Motion intro · 2026',
+        'projects.venn.body': "Venn Studios brand redesign. Built from the original logo's intent, pushed into modern, timeless territory — Venn isn't just a games studio, it also produces technology, and the identity had to carry both. Full system: logo, typography, palette, and motion intro.",
+        'projects.paradoxical.alt': 'Paradoxical key art',
+        'projects.paradoxical.meta': 'Perception-bending puzzle game · Unity · 2027',
+        'projects.paradoxical.body': "Venn Studios' perception-bending puzzle game. My role: collecting and synthesizing player feedback across TGS, BCN Game Fest, Milan Games Week, and GDC. Observing how players actually interact with the puzzles and feeding those insights back to the team.",
+        'projects.tooling.title': 'Studio Tooling',
+        'projects.tooling.meta': 'Internal tools · Python · Node.js',
+        'projects.tooling.body': "Built the studio's internal infrastructure: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding engagement patterns across YouTube content, and an interactive lore timeline.",
+        'projects.vennChat.title': 'Venn Chat',
+        'projects.vennChat.meta': 'Internal work hub · Knowledge management',
+        'projects.vennChat.body': "Contributed to the design of Venn's custom internal platform. Independently designed a knowledge-management system for tracking narrative and gameplay relationships — with relationship mapping, visual graph navigation, and AI-assisted organization (AI helps manage content, not create it). Built to scale across complex game worlds with hundreds of interconnected entries.",
+        'projects.docs.title': 'Documentation & Comms',
+        'projects.docs.meta': 'Press releases · Guides · Standards',
+        'projects.docs.body': 'Press releases for both games across multiple events. Internal event preparation guides and team documentation. Mentorship program notes organized for the team. Executive-level project reporting. Studio-wide UI/UX design guidelines (WCAG, typography, spacing, animation) and document design standards.',
+        'projects.researchStrategy.title': 'Research & Strategy',
+        'projects.researchStrategy.meta': 'ROI · Market analysis · Platform submissions · Go-to-market',
+        'projects.researchStrategy.body': 'Convention ROI analysis and playtesting research methodology. Competitive analysis of successful indie studios in emerging markets. Multi-platform submission process research across major storefronts. Crowdfunding go-to-market strategy including regulatory and logistical research for international studios.',
+
+        'events.label': "// where I've been",
+        'events.title': 'Events',
+        'events.tgs.year': 'Sep 2025',
+        'events.tgs.body': 'First international showcase. Focused on Rogue Reigns — observed how Japanese players approached the deckbuilder differently from Western playtests.',
+        'events.bcn.year': 'Oct 2025',
+        'events.bcn.body': 'Barcelona. Solo exhibitor — represented both Rogue Reigns and Paradoxical alone. Tracked what confused players vs. what they said confused them — often different things.',
+        'events.paris.year': 'Oct 2025',
+        'events.paris.body': 'Paris. Attended as a scout — evaluating whether the event would be worth exhibiting at, documenting ideas and observations for the team.',
+        'events.milan.year': 'Nov 2025',
+        'events.milan.body': 'Responsible for Rogue Reigns across both versions. Mastered the physical card game for players and collected feedback. Presented the digital version, observed gameplay, and gathered insights.',
+        'events.gdc.year': 'Mar 2026',
+        'events.gdc.body': 'San Francisco. Collected player feedback for both Rogue Reigns and Paradoxical — observations directly shaped design iterations for both games.',
+        'events.gamescom.year': 'Apr 2026',
+        'events.gamescom.body': "Latin American market. Venn's home turf — evaluating regional reception and gathering feedback from the local player base.",
+
+        'contact.label': '// say hi',
+        'contact.title': 'Contact',
+
+        'footer.backToTop': 'Back to top &#8593;&#xFE0E;',
+        'footer.catPantu': 'Pantu, the cat',
+        'footer.catSus': 'Sus, the cat',
+        'footer.catPresun': 'Presun, the cat',
+
+        'a11y.title': 'Accessibility',
+        'a11y.textSize': 'Text size',
+        'a11y.reduceMotion': 'Reduced motion',
+        'a11y.highContrast': 'Increased contrast',
+        'a11y.reset': 'Reset',
+
+        'tags.hudDesign': 'HUD Design',
+        'tags.menuPrototype': 'Menu Prototype',
+        'tags.cardContent': 'Card Content',
+        'tags.mechanics': 'Mechanics',
+        'tags.gameDesignAnalysis': 'Game Design & Analysis',
+        'tags.lore': 'Lore',
+        'tags.artFeedback': 'Art Feedback',
+        'tags.playerResearch': 'Player Research',
+        'tags.conceptArt': 'Concept Art',
+        'tags.steamPage': 'Steam Page',
+        'tags.logo': 'Logo',
+        'tags.typography': 'Typography',
+        'tags.palette': 'Palette',
+        'tags.motion': 'Motion',
+        'tags.brandSystem': 'Brand System',
+        'tags.feedbackAnalysis': 'Feedback Analysis',
+        'tags.automation': 'Automation',
+        'tags.knowledgeSystem': 'Knowledge System Design',
+        'tags.featureSpec': 'Feature Spec',
+        'tags.mvpSpec': 'MVP Spec',
+        'tags.uiUpcoming': 'UI (upcoming)',
+        'tags.pressReleases': 'Press Releases',
+        'tags.eventGuides': 'Event Guides',
+        'tags.uiuxGuidelines': 'UI/UX Guidelines',
+        'tags.designStandards': 'Design Standards',
+        'tags.conventionROI': 'Convention ROI',
+        'tags.platformSubmissions': 'Platform Submissions',
+        'tags.gtmStrategy': 'Go-to-market Strategy',
+        'tags.competitiveAnalysis': 'Competitive Analysis',
+
+        'hero.tags.uiux': 'ui-ux',
+        'hero.tags.gameDesign': 'game-design-analysis',
+        'hero.tags.playerResearch': 'player-research',
+        'hero.tags.conceptArt': 'concept-art',
+        'hero.tags.vibeCoding': 'vibe-coding',
+        'hero.tags.researchStrategy': 'research-strategy',
+        'hero.tags.commsDocs': 'comms-docs',
+        'hero.tags.tooling': 'tooling'
+      },
+      pt: {
+        'nav.roles': 'Funções',
+        'nav.projects': 'Projetos',
+        'nav.events': 'Eventos',
+        'nav.contact': 'Contato',
+        'nav.menu': 'Menu',
+        'nav.langToggle': 'Mudar idioma',
+        'nav.a11yToggle': 'Opções de acessibilidade',
+
+        'hero.tagline': 'Olhar afiado. Sem desculpas.',
+        'hero.role': 'Designer de produto & games',
+        'hero.roleAria': 'Designer de produto e games',
+        'hero.connector': ', vibe coder na ',
+        'hero.decode': 'Piloto de mecha',
+
+        'roles.label': '// o que eu faço',
+        'roles.title': 'Funções',
+        'roles.uiux.title': 'UI/UX Designer',
+        'roles.uiux.context': 'HUD in-game · Menus · Web · Padrões',
+        'roles.uiux.body': 'Cuido de toda a experiência digital do estúdio — o site da Venn Studios, a presença web do Rogue Reigns e do Paradoxical. Desenhei o HUD in-game e prototipei o menu principal com física customizada. Escrevi as diretrizes de UI/UX que valem pro estúdio inteiro e os padrões de design de documentos.',
+        'roles.gamedesign.title': 'Game Design & Análise',
+        'roles.gamedesign.context': 'Sistemas · Balanceamento · Arquitetura narrativa',
+        'roles.gamedesign.body': 'Escrevi descrições, mecânicas, nomes e funcionalidade dos cards do Rogue Reigns. Fiz a análise crítica completa do sistema de cards em todas as classes. Mapeei os principais deckbuilders e jogos narrativos como referência de design. Fiz auditoria de consistência de lore em todo o projeto.',
+        'roles.research.title': 'Pesquisa com Jogadores',
+        'roles.research.context': 'Convenções · Observação · Análise',
+        'roles.research.body': 'Em campo na GDC, TGS, BCN Game Fest, Milan Games Week e Gamescom LATAM — coletando feedback, observando o que as pessoas fazem (não só o que dizem) e transformando isso em mudanças concretas pro time.',
+        'roles.concept.title': 'Concept Artist',
+        'roles.concept.context': 'Elementos de HUD · Assets do jogo',
+        'roles.concept.body': 'Crio assets visuais para o Rogue Reigns — elementos de HUD, artwork de UI e peças standalone. Costurando a intenção de design com o visual in-game.',
+        'roles.vibe.title': 'Vibe Coder & Tooling',
+        'roles.vibe.context': 'Python · JS · Playwright · Claude Code',
+        'roles.vibe.body': 'Construí as ferramentas internas do estúdio: um pipeline pra processar documentos com a identidade da marca, um bot do Discord robusto pra gestão da comunidade, ferramentas de analytics pra entender o engajamento na comunidade, e uma timeline interativa de lore.',
+        'roles.strategy.title': 'Pesquisa & Estratégia',
+        'roles.strategy.context': 'ROI · Mercado · Submissões em plataformas · Go-to-market',
+        'roles.strategy.body': 'Análise de ROI de convenções e metodologia de pesquisa pra playtesting. Análise competitiva de estúdios indie que dão certo em mercados emergentes. Pesquisa dos processos de submissão nas principais lojas. Estratégia de go-to-market pra crowdfunding, incluindo pesquisa regulatória e logística.',
+        'roles.comms.title': 'Comunicação & Documentação',
+        'roles.comms.context': 'Press releases · Guias · Relatórios',
+        'roles.comms.body': 'Escrevi press releases dos dois jogos em vários eventos. Criei guias internos de preparação pra eventos e documentação do time. Organizei as notas do programa de mentoria e mantive os reports executivos rodando. Defini os padrões de design de documentos do estúdio.',
+
+        'projects.label': '// o que eu construí',
+        'projects.title': 'Projetos',
+        'projects.secondaryLabel': '// também construí',
+        'projects.rogue.alt': 'Screenshot do Rogue Reigns',
+        'projects.rogue.meta': 'Deckbuilder roguelike de fantasia sombria · 2026',
+        'projects.rogue.body': 'O carro-chefe da Venn Studios. Desenhei o HUD in-game e prototipei o menu principal com física customizada. Escrevi descrições, mecânicas, nomes e funcionalidade dos cards. Contribuí na reconstrução das mecânicas e no desenvolvimento de lore. Fiz uma análise crítica completa do sistema de cards em todas as classes, com referências dos principais deckbuilders e jogos de narrativa-ação. Dei feedback de arte tanto pro jogo digital quanto pro físico. Liderei a pesquisa com jogadores em todas as convenções.',
+        'projects.venn.alt': 'Animação de intro da logo da Venn Studios',
+        'projects.venn.meta': 'Identidade visual · Motion intro · 2026',
+        'projects.venn.body': 'Redesign da identidade da Venn Studios. Parti do ideal original da logo e levei a marca pra um território moderno e atemporal — a Venn não é só um estúdio de jogos, também produz tecnologia, e a identidade precisava abraçar isso. Sistema completo: logo, tipografia, palette e motion intro.',
+        'projects.paradoxical.alt': 'Key art do Paradoxical',
+        'projects.paradoxical.meta': 'Puzzle game que distorce a percepção · Unity · 2027',
+        'projects.paradoxical.body': 'O puzzle game da Venn Studios que distorce a percepção. Meu papel: coletar e sintetizar feedback dos jogadores em TGS, BCN Game Fest, Milan Games Week e GDC. Observar como o pessoal de fato interage com os puzzles e levar esses insights de volta pro time.',
+        'projects.tooling.title': 'Ferramentas do Estúdio',
+        'projects.tooling.meta': 'Ferramentas internas · Python · Node.js',
+        'projects.tooling.body': 'Construí a infraestrutura interna do estúdio: pipeline pra processar documentos com a identidade da marca, bot do Discord robusto pra gestão da comunidade, ferramentas de analytics pra entender o engajamento no conteúdo do YouTube, e uma timeline interativa de lore.',
+        'projects.vennChat.title': 'Venn Chat',
+        'projects.vennChat.meta': 'Hub interno de trabalho · Gestão de conhecimento',
+        'projects.vennChat.body': 'Contribuí no design da plataforma interna customizada da Venn. Desenhei sozinha um sistema de gestão de conhecimento pra rastrear relações entre narrativa e gameplay — com mapeamento de relações, navegação visual em grafo e organização assistida por IA (a IA ajuda a organizar o conteúdo, não a criá-lo). Construído pra escalar em mundos complexos com centenas de entradas interconectadas.',
+        'projects.docs.title': 'Documentação & Comunicação',
+        'projects.docs.meta': 'Press releases · Guias · Padrões',
+        'projects.docs.body': 'Press releases dos dois jogos em vários eventos. Guias internos de preparação pra eventos e documentação do time. Notas do programa de mentoria organizadas pro time. Reports executivos de projetos. Diretrizes de UI/UX do estúdio (WCAG, tipografia, espaçamento, animação) e padrões de design de documentos.',
+        'projects.researchStrategy.title': 'Pesquisa & Estratégia',
+        'projects.researchStrategy.meta': 'ROI · Análise de mercado · Submissões em plataformas · Go-to-market',
+        'projects.researchStrategy.body': 'Análise de ROI de convenções e metodologia de pesquisa pra playtesting. Análise competitiva de estúdios indie que dão certo em mercados emergentes. Pesquisa dos processos de submissão nas principais lojas. Estratégia de go-to-market pra crowdfunding, com pesquisa regulatória e logística pra estúdios internacionais.',
+
+        'events.label': '// onde eu estive',
+        'events.title': 'Eventos',
+        'events.tgs.year': 'Set 2025',
+        'events.tgs.body': 'Primeira mostra internacional. Foco no Rogue Reigns — observei como o jogador japonês aborda o deckbuilder de um jeito diferente dos playtests ocidentais.',
+        'events.bcn.year': 'Out 2025',
+        'events.bcn.body': 'Barcelona. Expositora solo — representei sozinha o Rogue Reigns e o Paradoxical. Acompanhei o que confundia os jogadores vs. o que eles diziam confundir — quase sempre coisas diferentes.',
+        'events.paris.year': 'Out 2025',
+        'events.paris.body': 'Paris. Fui como scout — avaliei se valeria a pena expor por lá e documentei ideias e observações pro time.',
+        'events.milan.year': 'Nov 2025',
+        'events.milan.body': 'Cuidei do Rogue Reigns nas duas versões. Mestrei o jogo de cartas físico pros jogadores e coletei feedback. Apresentei a versão digital, observei o gameplay e coletei insights.',
+        'events.gdc.year': 'Mar 2026',
+        'events.gdc.body': 'São Francisco. Coletei feedback dos jogadores para o Rogue Reigns e para o Paradoxical — observações que moldaram diretamente as iterações de design dos dois jogos.',
+        'events.gamescom.year': 'Abr 2026',
+        'events.gamescom.body': 'Mercado latino-americano. Território da Venn — avaliei a recepção regional e coletei feedback da base de jogadores local.',
+
+        'contact.label': '// diga oi',
+        'contact.title': 'Contato',
+
+        'footer.backToTop': 'Voltar ao topo &#8593;&#xFE0E;',
+        'footer.catPantu': 'Pantu, a gata',
+        'footer.catSus': 'Sus, o gato',
+        'footer.catPresun': 'Presun, o gato',
+
+        'a11y.title': 'Acessibilidade',
+        'a11y.textSize': 'Tamanho do texto',
+        'a11y.reduceMotion': 'Movimento reduzido',
+        'a11y.highContrast': 'Contraste aumentado',
+        'a11y.reset': 'Redefinir',
+
+        'tags.hudDesign': 'Design de HUD',
+        'tags.menuPrototype': 'Protótipo de Menu',
+        'tags.cardContent': 'Conteúdo de Cards',
+        'tags.mechanics': 'Mecânicas',
+        'tags.gameDesignAnalysis': 'Game Design & Análise',
+        'tags.lore': 'Lore',
+        'tags.artFeedback': 'Feedback de Arte',
+        'tags.playerResearch': 'Pesquisa com Jogadores',
+        'tags.conceptArt': 'Concept Art',
+        'tags.steamPage': 'Steam Page',
+        'tags.logo': 'Logo',
+        'tags.typography': 'Tipografia',
+        'tags.palette': 'Palette',
+        'tags.motion': 'Motion',
+        'tags.brandSystem': 'Sistema de Marca',
+        'tags.feedbackAnalysis': 'Análise de Feedback',
+        'tags.automation': 'Automação',
+        'tags.knowledgeSystem': 'Design de Sistema de Conhecimento',
+        'tags.featureSpec': 'Spec de Feature',
+        'tags.mvpSpec': 'Spec de MVP',
+        'tags.uiUpcoming': 'UI (em breve)',
+        'tags.pressReleases': 'Press Releases',
+        'tags.eventGuides': 'Guias de Eventos',
+        'tags.uiuxGuidelines': 'Diretrizes de UI/UX',
+        'tags.designStandards': 'Padrões de Design',
+        'tags.conventionROI': 'ROI de Convenções',
+        'tags.platformSubmissions': 'Submissões em Plataformas',
+        'tags.gtmStrategy': 'Estratégia de Go-to-market',
+        'tags.competitiveAnalysis': 'Análise Competitiva',
+
+        'hero.tags.uiux': 'ui-ux',
+        'hero.tags.gameDesign': 'game-design-analise',
+        'hero.tags.playerResearch': 'pesquisa-jogadores',
+        'hero.tags.conceptArt': 'concept-art',
+        'hero.tags.vibeCoding': 'vibe-coding',
+        'hero.tags.researchStrategy': 'pesquisa-estrategia',
+        'hero.tags.commsDocs': 'comunicacao-docs',
+        'hero.tags.tooling': 'tooling'
+      }
+    };
+
+    function applyTranslations(lang) {
+      const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const val = dict[el.dataset.i18n];
+        if (val !== undefined) el.textContent = val;
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+        const val = dict[el.dataset.i18nHtml];
+        if (val !== undefined) el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+        el.dataset.i18nAttr.split(',').forEach((spec) => {
+          const [attr, key] = spec.split(':').map((s) => s.trim());
+          const val = dict[key];
+          if (val !== undefined) el.setAttribute(attr, val);
+        });
+      });
+      ['lang-toggle', 'lang-toggle-mobile'].forEach((id) => {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        btn.querySelector('.lang-en').classList.toggle('lang-active', lang === 'en');
+        btn.querySelector('.lang-pt').classList.toggle('lang-active', lang === 'pt');
+      });
+      document.dispatchEvent(new CustomEvent('lang:changed', { detail: { lang } }));
+    }
+
+    function detectLang() {
+      const stored = localStorage.getItem('rb.lang');
+      if (stored === 'en' || stored === 'pt') return stored;
+      const nav = (navigator.language || '').toLowerCase();
+      return nav.startsWith('pt') ? 'pt' : 'en';
+    }
+
+    function setLang(lang) {
+      try { localStorage.setItem('rb.lang', lang); } catch (e) {}
+      applyTranslations(lang);
+    }
+
+    const initialLang = detectLang();
+    applyTranslations(initialLang);
+
+    function toggleLang() {
+      const current = document.documentElement.lang.startsWith('pt') ? 'pt' : 'en';
+      setLang(current === 'pt' ? 'en' : 'pt');
+    }
+    document.getElementById('lang-toggle').addEventListener('click', toggleLang);
+    const mobileLangBtn = document.getElementById('lang-toggle-mobile');
+    if (mobileLangBtn) mobileLangBtn.addEventListener('click', toggleLang);
+
+    // ─── Accessibility panel ────────────────────────────────────────
+    const a11yToggleBtn = document.getElementById('a11y-toggle');
+    const a11yPanel = document.getElementById('a11y-panel');
+    const reduceMotionInput = document.getElementById('a11y-reduce-motion');
+    const highContrastInput = document.getElementById('a11y-high-contrast');
+    const textSizeBtns = document.querySelectorAll('.a11y-segmented [data-text-size]');
+    const a11yResetBtn = document.getElementById('a11y-reset');
+
+    function openA11y() {
+      a11yPanel.classList.add('open');
+      a11yToggleBtn.setAttribute('aria-expanded', 'true');
+      a11yToggleBtn.setAttribute('aria-pressed', 'true');
+    }
+    function closeA11y() {
+      a11yPanel.classList.remove('open');
+      a11yToggleBtn.setAttribute('aria-expanded', 'false');
+      a11yToggleBtn.setAttribute('aria-pressed', 'false');
+    }
+    a11yToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      a11yPanel.classList.contains('open') ? closeA11y() : openA11y();
+    });
+    document.addEventListener('click', (e) => {
+      if (!a11yPanel.classList.contains('open')) return;
+      if (a11yPanel.contains(e.target) || a11yToggleBtn.contains(e.target)) return;
+      closeA11y();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && a11yPanel.classList.contains('open')) closeA11y();
+    });
+
+    function setTextSize(size) {
+      const html = document.documentElement;
+      html.classList.remove('a11y-text-large', 'a11y-text-xl');
+      if (size === 'large') html.classList.add('a11y-text-large');
+      else if (size === 'xl') html.classList.add('a11y-text-xl');
+      textSizeBtns.forEach((b) => {
+        b.setAttribute('aria-pressed', b.dataset.textSize === size ? 'true' : 'false');
+      });
+      try { localStorage.setItem('rb.textSize', size); } catch (e) {}
+    }
+    function setReduceMotion(on) {
+      document.documentElement.classList.toggle('a11y-reduce-motion', !!on);
+      reduceMotionInput.checked = !!on;
+      try { localStorage.setItem('rb.reduceMotion', on ? '1' : '0'); } catch (e) {}
+      syncProjectVideos();
+    }
+
+    function syncProjectVideos() {
+      const reduce = document.documentElement.classList.contains('a11y-reduce-motion')
+                  || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('.project-video').forEach((v) => {
+        if (reduce) {
+          v.pause();
+          try { v.currentTime = 0; } catch (e) {}
+        } else if (v.paused) {
+          v.play().catch(() => {});
+        }
+      });
+    }
+    syncProjectVideos();
+    function setHighContrast(on) {
+      document.documentElement.classList.toggle('a11y-high-contrast', !!on);
+      highContrastInput.checked = !!on;
+      try { localStorage.setItem('rb.highContrast', on ? '1' : '0'); } catch (e) {}
+    }
+
+    textSizeBtns.forEach((b) => {
+      b.addEventListener('click', () => setTextSize(b.dataset.textSize));
+    });
+    reduceMotionInput.addEventListener('change', () => setReduceMotion(reduceMotionInput.checked));
+    highContrastInput.addEventListener('change', () => setHighContrast(highContrastInput.checked));
+    a11yResetBtn.addEventListener('click', () => {
+      setTextSize('default');
+      setReduceMotion(false);
+      setHighContrast(false);
+    });
+
+    // Restore saved a11y prefs
+    setTextSize(localStorage.getItem('rb.textSize') || 'default');
+    if (localStorage.getItem('rb.reduceMotion') === '1') setReduceMotion(true);
+    if (localStorage.getItem('rb.highContrast') === '1') setHighContrast(true);
   </script>
 </body>
 </html>
