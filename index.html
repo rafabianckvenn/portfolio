@@ -6,11 +6,11 @@
   <title>Rafa Bianck — Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="assets/star-icon.svg">
   <link rel="canonical" href="https://rafabianck.com/">
-  <meta name="description" content="Rafa Bianck — Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
+  <meta name="description" content="Rafa Bianck — Product & game designer at Venn Studios. Sharp eyes. No apologies.">
   <meta name="author" content="Rafa Bianck">
   <meta name="theme-color" content="#131314">
   <meta property="og:title" content="Rafa Bianck — Portfolio">
-  <meta property="og:description" content="Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
+  <meta property="og:description" content="Product & game designer at Venn Studios. Sharp eyes. No apologies.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Rafa Bianck">
   <meta property="og:locale" content="en_US">
@@ -23,7 +23,7 @@
   <meta name="twitter:image" content="https://rafabianck.com/assets/og-image.jpg">
   <meta name="twitter:image:alt" content="Rafa Bianck — Product & game designer at Venn Studios">
   <meta name="twitter:title" content="Rafa Bianck — Portfolio">
-  <meta name="twitter:description" content="Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.">
+  <meta name="twitter:description" content="Product & game designer at Venn Studios. Sharp eyes. No apologies.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,7 +32,7 @@
     "url": "https://rafabianck.com/",
     "image": "https://rafabianck.com/assets/og-image.jpg",
     "jobTitle": "Product & Game Designer",
-    "description": "Product & game designer, vibe coder at Venn Studios. Sharp eyes. No apologies.",
+    "description": "Product & game designer at Venn Studios. Sharp eyes. No apologies.",
     "worksFor": {
       "@type": "Organization",
       "name": "Venn Studios",
@@ -570,22 +570,14 @@
     }
 
     .venn-grid {
-      display: block;
       padding: 0;
       background: #131314;
     }
-    .venn-grid > video {
+    .venn-grid > img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
-      transform: scale(1.5);
-      transform-origin: center;
-    }
-    @media (max-width: 768px) {
-      .venn-grid > video {
-        transform: scale(1.15);
-      }
     }
 
 
@@ -880,6 +872,7 @@
 
     .loader-content {
       position: absolute;
+      visibility: hidden;
     }
 
     .loader-name-wrap {
@@ -1465,14 +1458,13 @@
     <div class="hero-intro">
       <p class="hero-subtitle">
         <span data-i18n="hero.tagline">Sharp eyes. No apologies.</span><br>
-        <span class="hero-scramble" tabindex="0" role="button" data-decode="Mecha pilot" aria-label="Product and game designer" data-i18n="hero.role" data-i18n-attr="aria-label:hero.roleAria,data-decode:hero.decode">Product &amp; game designer</span><span data-i18n="hero.connector">, vibe coder at </span><a href="https://venn-studios.com/" target="_blank" rel="noopener"><strong>Venn Studios</strong><span class="external-arrow">&#8599;&#xFE0E;</span></a><span>.</span>
+        <span class="hero-scramble" tabindex="0" role="button" data-decode="Mecha pilot" aria-label="Product and game designer" data-i18n="hero.role" data-i18n-attr="aria-label:hero.roleAria,data-decode:hero.decode">Product &amp; game designer</span><span data-i18n="hero.connector"> at </span><a href="https://venn-studios.com/" target="_blank" rel="noopener"><strong>Venn Studios</strong><span class="external-arrow">&#8599;&#xFE0E;</span></a><span>.</span>
       </p>
       <div class="hero-tags">
         <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.uiux">ui-ux</span></span>
         <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.gameDesign">game-design-analysis</span></span>
         <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.playerResearch">player-research</span></span>
         <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.conceptArt">concept-art</span></span>
-        <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.vibeCoding">vibe-coding</span></span>
         <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.researchStrategy">research-strategy</span></span>
         <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.commsDocs">comms-docs</span></span>
         <span class="tag"><span class="slash">/</span> <span data-i18n="hero.tags.tooling">tooling</span></span>
@@ -1506,7 +1498,7 @@
         <p data-i18n="roles.concept.body">Creating visual assets for Rogue Reigns — HUD elements, UI artwork, and standalone pieces. Bridging the gap between design intent and in-game visuals.</p>
       </div>
       <div class="role-card fade-in">
-        <h3 data-i18n="roles.vibe.title">Vibe Coder &amp; Tooling</h3>
+        <h3 data-i18n="roles.vibe.title">Internal Tools</h3>
         <p class="role-context" data-i18n="roles.vibe.context">Python &middot; JS &middot; Playwright &middot; Claude Code</p>
         <p data-i18n="roles.vibe.body">Built some of the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.</p>
       </div>
@@ -1555,9 +1547,7 @@
 
     <div class="project">
       <div class="project-visual venn-grid" role="img" aria-label="Venn Studios logo motion intro" data-i18n-attr="aria-label:projects.venn.alt">
-        <video class="project-video" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
-          <source src="assets/venn-logo-intro-dark.webm" type="video/webm">
-        </video>
+        <img class="project-video" src="assets/venn-logo-intro.gif" alt="Venn Studios logo motion intro" aria-hidden="true">
       </div>
       <div class="project-info">
         <h3><a href="https://venn-studios.com/" target="_blank" rel="noopener">Venn Studios<span class="external-arrow">&#8599;&#xFE0E;</span></a></h3>
@@ -1673,7 +1663,7 @@
         <img class="cat-sus" src="assets/sus.png" alt="Sus, the cat" data-i18n-attr="alt:footer.catSus">
         <img class="cat-presun" src="assets/presun.png" alt="Presun, the cat" data-i18n-attr="alt:footer.catPresun">
       </div>
-      <a class="contact-prompt" href="mailto:rafabianck@venn-studios.com">
+      <a class="contact-prompt" href="mailto:rafabianck@venn-studios.com" target="_blank" rel="noopener">
         <span class="caret" style="color: var(--accent-mauve);">&gt;</span>
         <span>rafabianck@venn-studios.com</span>
       </a>
@@ -1724,6 +1714,7 @@
           const pos = getDocOffset(heroName);
           loaderContent.style.left = pos.left + 'px';
           loaderContent.style.top = pos.top + 'px';
+          loaderContent.style.visibility = 'visible';
         }
         if (heroDivider) {
           const pos = getDocOffset(heroDivider);
@@ -2216,7 +2207,7 @@
         'hero.tagline': 'Sharp eyes. No apologies.',
         'hero.role': 'Product & game designer',
         'hero.roleAria': 'Product and game designer',
-        'hero.connector': ', vibe coder at ',
+        'hero.connector': ' at ',
         'hero.decode': 'Mecha pilot',
 
         'roles.label': '// what I do',
@@ -2233,7 +2224,7 @@
         'roles.concept.title': 'Concept Artist',
         'roles.concept.context': 'HUD elements · Game assets',
         'roles.concept.body': 'Creating visual assets for Rogue Reigns — HUD elements, UI artwork, and standalone pieces. Bridging the gap between design intent and in-game visuals.',
-        'roles.vibe.title': 'Vibe Coder & Tooling',
+        'roles.vibe.title': 'Internal Tools',
         'roles.vibe.context': 'Python · JS · Playwright · Claude Code',
         'roles.vibe.body': "Built some of the studio's internal tools: a document-processing pipeline for branded outputs, a feature-rich Discord bot for community management, analytics tools for understanding community engagement patterns, and an interactive lore timeline.",
         'roles.strategy.title': 'Research & Strategy',
@@ -2331,7 +2322,6 @@
         'hero.tags.gameDesign': 'game-design-analysis',
         'hero.tags.playerResearch': 'player-research',
         'hero.tags.conceptArt': 'concept-art',
-        'hero.tags.vibeCoding': 'vibe-coding',
         'hero.tags.researchStrategy': 'research-strategy',
         'hero.tags.commsDocs': 'comms-docs',
         'hero.tags.tooling': 'tooling'
@@ -2348,7 +2338,7 @@
         'hero.tagline': 'Olhar afiado. Sem desculpas.',
         'hero.role': 'Designer de produto & games',
         'hero.roleAria': 'Designer de produto e games',
-        'hero.connector': ', vibe coder na ',
+        'hero.connector': ' na ',
         'hero.decode': 'Piloto de mecha',
 
         'roles.label': '// o que eu faço',
@@ -2365,7 +2355,7 @@
         'roles.concept.title': 'Concept Artist',
         'roles.concept.context': 'Elementos de HUD · Assets do jogo',
         'roles.concept.body': 'Crio assets visuais para o Rogue Reigns — elementos de HUD, artwork de UI e peças standalone. Traduzindo a intenção de design pro visual in-game.',
-        'roles.vibe.title': 'Vibe Coder & Tooling',
+        'roles.vibe.title': 'Ferramentas Internas',
         'roles.vibe.context': 'Python · JS · Playwright · Claude Code',
         'roles.vibe.body': 'Construí algumas das ferramentas internas do estúdio: um pipeline pra processar documentos com a identidade da marca, um bot do Discord robusto pra gestão da comunidade, ferramentas de analytics pra entender o engajamento na comunidade, e uma timeline interativa de lore.',
         'roles.strategy.title': 'Pesquisa & Estratégia',
@@ -2463,7 +2453,6 @@
         'hero.tags.gameDesign': 'game-design-analise',
         'hero.tags.playerResearch': 'pesquisa-jogadores',
         'hero.tags.conceptArt': 'concept-art',
-        'hero.tags.vibeCoding': 'vibe-coding',
         'hero.tags.researchStrategy': 'pesquisa-estrategia',
         'hero.tags.commsDocs': 'comunicacao-docs',
         'hero.tags.tooling': 'tooling'

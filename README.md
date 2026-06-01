@@ -1,6 +1,6 @@
 # rafabianck.com
 
-Personal portfolio — UI/UX & game designer, vibe coder at [Venn Studios](https://venn-studios.com/).
+Personal portfolio — Product & game designer at [Venn Studios](https://venn-studios.com/).
 
 ## Stack
 
